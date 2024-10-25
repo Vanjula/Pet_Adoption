@@ -17,7 +17,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-
 // Adding icons for the pets
 import CatIcon from '../assets/cat.png';
 import HamsterIcon from '../assets/hamster.png';

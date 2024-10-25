@@ -12,8 +12,31 @@ import HeartDog from '../assets/heartDog.svg';
 import Pawn from '../assets/pawn.svg';
 import SugarDog from '../assets/sugarDog.svg';
 import Pentagon from '../assets/pentagon.svg';
+import Pbag from '../assets/pbag.png';
 import Blue from '../assets/blue.jpeg'
 import Cat from '../assets/cat.png';
+import Health from '../assets/health.png';
+import Groom from '../assets/groom.png';
+import Train from '../assets/train.png';
+import Dhome from '../assets/home.png';
+import Tick from '../assets/tick.png';
+import Cbed from '../assets/cbed.png';
+import PN1 from '../assets/pn1.png';
+import PN2 from '../assets/pn2.png';
+import PN3 from '../assets/pn3.png';
+import Syrup from '../assets/syrup.png';
+import HamsterIcon from '../assets/hamster.png';
+import DogIcon from '../assets/dog.png';
+import Tfood from '../assets/turtlefood.png';
+import Wipe from '../assets/wipe.png';
+import ParrotIcon from '../assets/parrot.png';
+import RabbitIcon from '../assets/rabbit.png';
+import TurtleIcon from '../assets/turtle.png';
+import CombIcon from '../assets/comb.png';
+import SampIcon from '../assets/samp.png';
+import Food from '../assets/food.png';
+import RP from '../assets/rp.png';
+
 import Footer from './Footer';
 import { FcLike } from "react-icons/fc";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
@@ -58,33 +81,33 @@ const Home = () => {
         </div>
         <div className="CategoryCards">
           <div className="cards">
-            <img src={Purple} alt="" className="card_img" />
+            <img src={Groom} alt="" className="card_img" />
             <div>
-              <p>Accessories</p>
+              <p>Grooming & Hygiene Accessories</p>
               <BiRightArrowAlt className="rightArrow" />
             </div>
             <p>64 products</p>
           </div>
           <div className="cards">
-            <img src={Purple} alt="" className="card_img" />
+            <img src={Pbag} alt="" className="card_img" />
             <div>
-              <p>Accessories</p>
+              <p>Travel Accessories</p>
               <BiRightArrowAlt className="rightArrow" />
             </div>
             <p>64 products</p>
           </div>{" "}
           <div className="cards">
-            <img src={Purple} alt="" className="card_img" />
+            <img src={Train} alt="" className="card_img" />
             <div>
-              <p>Accessories</p>
+              <p>Training Accessories</p>
               <BiRightArrowAlt className="rightArrow" />
             </div>
             <p>64 products</p>
           </div>{" "}
           <div className="cards">
-            <img src={Purple} alt="" className="card_img" />
+            <img src={Health} alt="" className="card_img" />
             <div>
-              <p>Accessories</p>
+              <p> Health & Wellness Accessories</p>
               <BiRightArrowAlt className="rightArrow" />
             </div>
             <p>64 products</p>
@@ -95,7 +118,7 @@ const Home = () => {
         <h1>Featured products</h1>
         <div className="FeaturedProductCards">
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Dhome} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -105,7 +128,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Tick} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -115,7 +138,7 @@ const Home = () => {
             </div>
           </div>
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Cbed} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -185,7 +208,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={CombIcon} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -195,7 +218,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={SampIcon} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -205,7 +228,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Food} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -215,7 +238,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={RP} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -225,7 +248,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Wipe} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -235,7 +258,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Syrup} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -245,7 +268,7 @@ const Home = () => {
             </div>
           </div>{" "}
           <div className="featuredcard">
-            <img src={dog_food} alt="" />
+            <img src={Tfood} alt="" />
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
@@ -266,24 +289,24 @@ const Home = () => {
           </div>
           <div className="animalsCard">
             <div className="card">
-              <img src={Cat} alt="" />
-              cat
+              <img src={HamsterIcon} alt="" />
+              Hamster
+            </div>
+            <div className="card">
+              <img src={DogIcon} alt="" />
+              Dog
             </div>
             <div className="card">
               <img src={Cat} alt="" />
-              cat
+              Cat
             </div>
             <div className="card">
-              <img src={Cat} alt="" />
-              cat
+              <img src={TurtleIcon} alt="" />
+              Turtle
             </div>
             <div className="card">
-              <img src={Cat} alt="" />
-              cat
-            </div>
-            <div className="card">
-              <img src={Cat} alt="" />
-              cat
+              <img src={RabbitIcon} alt="" />
+              Rabbit
             </div>
           </div>
         </div>
@@ -293,7 +316,7 @@ const Home = () => {
         <h1>News & Blog</h1>
         <div className="news">
           <div className="NewsCard">
-            <img src={Blue} alt="" />
+            <img src={PN2} alt="" />
             <div className="tagger">News</div>
             <p>18 May 2024</p>
             <p>
@@ -302,7 +325,7 @@ const Home = () => {
             </p>
           </div>
           <div className="NewsCard">
-            <img src={Blue} alt="" />
+            <img src={PN1} alt="News" />
             <div className="tagger">News</div>
             <p>18 May 2024</p>
             <p>
@@ -311,7 +334,7 @@ const Home = () => {
             </p>
           </div>
           <div className="NewsCard">
-            <img src={Blue} alt="" />
+            <img src={PN3} alt="" />
             <div className="tagger">News</div>
             <p>18 May 2024</p>
             <p>

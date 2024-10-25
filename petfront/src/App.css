@@ -697,25 +697,62 @@ a {
   width: 100%;
 }
 
-.featuredcard{
+.featuredcard {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  padding: 0 5rem;
-  width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 850px; /* Sets a maximum width for the card */
+  margin: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
- .NameAndLike{
+.featuredcard:hover {
+  transform: translateY(-10px); /* Lift the card slightly on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.featuredcard img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.NameAndLike {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 0.5rem 0;
 }
-.NameAndLike .like{
-  font-size: 30px;
+
+.NameAndLike div {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.NameAndLike p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.like {
+  font-size: 1.8rem;
+  color: red;
+  cursor: pointer;
+}
+
+.best-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .CatImgContainer{
