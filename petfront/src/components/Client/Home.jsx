@@ -13,7 +13,7 @@ import Pawn from '../assets/pawn.svg';
 import SugarDog from '../assets/sugarDog.svg';
 import Pentagon from '../assets/pentagon.svg';
 import Pbag from '../assets/pbag.png';
-import Blue from '../assets/blue.jpeg'
+import TPet from '../assets/pets.png';
 import Cat from '../assets/cat.png';
 import Health from '../assets/health.png';
 import Groom from '../assets/groom.png';
@@ -59,9 +59,8 @@ const Home = () => {
             </div>
             <div className="HomeContents_p">
               <p>
-                Sociis blandit et pellentesque aliquet at quisque tortor lacinia
-              </p>
-              <p>nullam. Mattis aenean scelerisque dui libero</p>
+              Adopt a pet, save a life, and gain a loyal friend for life.              </p>
+              <p>Your future best friend is waiting for you at Pet Dabang!!!</p>
             </div>
             <button className="Adopt-btn">Shop Now</button>
           </div>
@@ -121,8 +120,8 @@ const Home = () => {
             <img src={Dhome} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Dog Mini Home </div>
+                <p>Rs.800</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -131,8 +130,8 @@ const Home = () => {
             <img src={Tick} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>TICK F FLEA RELIEF</div>
+                <p>Rs.673</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -141,8 +140,8 @@ const Home = () => {
             <img src={Cbed} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Cat bed</div>
+                <p>Rs.789</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -152,7 +151,7 @@ const Home = () => {
       <div className="CatImgContainer">
         <div className="CatLeft">
           <img src={Shape_Cat} alt="" />
-          <img src={Cat} alt="" className="catImg" />
+          <img src={TPet} alt="" className="catImg" />
         </div>
         <div className="CatRight">
           <div className="CatContents">
@@ -160,17 +159,11 @@ const Home = () => {
 
             <div className="HomeContents_h">
               <h1>The smarter way to</h1>
-              <h1>shop for your pet</h1>
+              <h1>find your perfect pet companion!</h1>
             </div>
             <div className="HomeContents_p">
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Quibusdam dolorum quasi nisi, maiores praesentium fuga
-                perferendis id repudiandae, modi esse repellendus quo illum unde
-                ut omnis laborum! Ipsa, explicabo obcaecati! Voluptates eligendi
-                doloremque dolore dicta inventore dolorem vel sint eum rem
-                labore exercitationem mollitia culpa unde natus enim quod facere
-                laudantium quam beatae,
+              Are you looking for a loving pet to add joy and warmth to your home? At Pet Dabang, we believe that every pet deserves a caring family. Whether you're adopting your first pet or adding to your family, we make the process simple, transparent, and stress-free.
               </p>
             </div>
             <button className="Adopt-btn">Learn More</button>
@@ -202,7 +195,7 @@ const Home = () => {
             <div className="NameAndLike">
               <div>
                 <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <p>Rs.150</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -211,8 +204,8 @@ const Home = () => {
             <img src={CombIcon} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Pet Comb</div>
+                <p>Rs.250</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -221,8 +214,8 @@ const Home = () => {
             <img src={SampIcon} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Shine Shampoo</div>
+                <p>Rs.400</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -231,8 +224,8 @@ const Home = () => {
             <img src={Food} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Dog food</div>
+                <p>Rs.229</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -241,8 +234,8 @@ const Home = () => {
             <img src={RP} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Rabbit Serum</div>
+                <p>Rs.499</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -251,8 +244,8 @@ const Home = () => {
             <img src={Wipe} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Pet Wipes</div>
+                <p>Rs.150</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -261,8 +254,8 @@ const Home = () => {
             <img src={Syrup} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Pet Amino Acid Syrup</div>
+                <p>Rs.699</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -271,8 +264,8 @@ const Home = () => {
             <img src={Tfood} alt="" />
             <div className="NameAndLike">
               <div>
-                <div>Premimum Dog food</div>
-                <p>$ 45</p>
+                <div>Turtle food</div>
+                <p>Rs.599</p>
               </div>
               <FcLike className="like" />
             </div>
@@ -318,10 +311,9 @@ const Home = () => {
           <div className="NewsCard">
             <img src={PN2} alt="" />
             <div className="tagger">News</div>
-            <p>18 May 2024</p>
+            <p>12 July 2024</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero a
-              sint quasi maxime. Illo labore molestias amet, sit incidunt.
+            Pet adoption is more than just finding a furry friend—it's about giving an animal a second chance at a loving home. Thousands of dogs, cats, and other animals are waiting in shelters for families to bring them into their lives. 
             </p>
           </div>
           <div className="NewsCard">
@@ -329,17 +321,15 @@ const Home = () => {
             <div className="tagger">News</div>
             <p>18 May 2024</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero a
-              sint quasi maxime. Illo labore molestias amet, sit incidunt.
+            Senior pets often get overlooked in adoption centers, but they have so much love to give. Older animals tend to be calmer, more experienced, and often make great companions for families or individuals looking for a low-maintenance pet.
             </p>
           </div>
           <div className="NewsCard">
             <img src={PN3} alt="" />
             <div className="tagger">News</div>
-            <p>18 May 2024</p>
+            <p>02 June 2024</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero a
-              sint quasi maxime. Illo labore molestias amet, sit incidunt.
+            A pet's health is a top priority for any responsible owner. Regular veterinary check-ups, a balanced diet, and proper exercise are essential to keeping your pet in top shape. Whether it’s learning about pet-safe foods or understanding their emotional needs, ensuring your pet's well-being leads to a longer, happier life together. Let’s help our pets thrive by giving them the care and attention they need.
             </p>
           </div>
         </div>
