@@ -24,9 +24,9 @@ const Contact = () => {
             </div>
             <div className="HomeContents_p">
               <p>
-                Sociis blandit et pellentesque aliquet at quisque tortor lacinia
+              We’re excited to help you find your new furry friend! 
               </p>
-              <p>nullam. Mattis aenean scelerisque dui libero</p>
+              <p>Please fill out the form below, and our team will reach out to you shortly with adoption details.</p>
             </div>
             <button className="Adopt-btn">Shop Now</button>
           </div>
