@@ -580,11 +580,16 @@ a {
   height: 100%;
 
 }
+
 .Homeleft .HomeContents_p{
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+<<<<<<< HEAD
   color: rgb(124, 119, 119);
+=======
+  color: rgb(26, 21, 21);
+>>>>>>> 3ac9e09 (ready to deploy)
   font-size: 20px;
   font-weight: 700;
 }
@@ -2144,4 +2149,518 @@ textarea {
 
 .testimonial-controls button:hover {
   color: #FF5733;
+}
+
+.adoption-requests {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  padding: 5rem;
+}
+
+.no-requests {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.request-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.request-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.request-link {
+  flex-grow: 1;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.request-link:hover {
+  color: #0056b3;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.approve-button,
+.deny-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.approve-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.approve-button:hover {
+  background-color: #218838;
+}
+
+.deny-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deny-button:hover {
+  background-color: #c82333;
+}
+
+.ByPet {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.topContents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.customeIcon {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.animalsCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.animalsCard .card2 {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.animalsCard .card2 img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.animalsCard .card2:hover {
+  transform: translateY(-5px);
+}
+
+.animalsCard .card2 .adoptButton {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card2 :hover .adoptButton {
+  opacity: 1;
+}
+
+
+.PetSearch {
+  margin-bottom: 20px;
+}
+
+.PetSearch input {
+  margin: 5px;
+  padding: 8px;
+}
+
+.PetResults .PetCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+/* src/Login.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.login-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.login-title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.login-option {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-option:hover {
+  text-decoration: underline;
+}
+
+.login-separator {
+  margin: 0 10px;
+  color: #ccc;
+}
+
+
+/* src/ForgotPassword.css */
+.forgot-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.forgot-password-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.forgot-password-title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.forgot-password-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.forgot-password-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.forgot-password-button:hover {
+  background-color: #0056b3;
+}
+
+/* src/Register.css */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.register-form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.register-title {
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.register-input {
+  width: 100%;
+  padding: 10px;
+  margin: 0.5rem 0;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.register-input:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.register-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+.register-button:focus {
+  outline: none;
+}
+
+/* src/ResetPassword.css */
+.reset-password-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+.reset-password-title {
+  margin-bottom: 2rem;
+  font-size: 24px;
+  color: #333;
+}
+
+.otp-form,
+.password-form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin-bottom: 1rem;
+}
+
+.otp-input,
+.password-input {
+  width: 100%;
+  padding: 10px;
+  margin: 0.5rem 0;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.otp-input:focus,
+.password-input:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.otp-button,
+.password-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.otp-button:hover,
+.password-button:hover {
+  background-color: #0056b3;
+}
+
+.otp-button:focus,
+.password-button:focus {
+  outline: none;
+}
+
+
+/* Adoption.css */
+.adoption-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.adoption-title {
+  font-size: 2.5rem;
+  color: #4a90e2;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Pet Results Container */
+.pet-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.pet-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 280px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.pet-card:hover {
+  transform: scale(1.05);
+}
+
+/* Pet Image */
+.pet-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Text Styles */
+.pet-name {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 5px 0;
+}
+
+.pet-type,
+.pet-area,
+.pet-age,
+.pet-contact {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Button Styles */
+.show-interest-button {
+  background-color: #4a90e2;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* No Results Message */
+.no-results-message {
+  font-size: 1.2rem;
+  color: #777;
+  text-align: center;
+  padding: 20px;
+}
+.show-interest-button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.show-interest-button:hover {
+  background-color: #219653;
+}
+
+.no-results-message {
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
 }

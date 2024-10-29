@@ -36,8 +36,10 @@ const userRoutes = require('./routes/user');
 const PetProducts = require('./routes/PetFood');
 const Order = require('./routes/Order');
 const request = require('./routes/AdoptReq');
+const cat= require('./routes/category');
 
 app.use('/', pages);
+app.use('/cat',cat);
 app.use('/pet',pet);
 app.use('/user', userRoutes);
 app.use('/order',Order);

@@ -5,6 +5,10 @@ import AdoptionReuests from './pages/AdoptionReuests';
 import DashboardContent from './pages/DashboardContent';
 import PetProducts from './pages/PetProducts';
 import PetProductsLimit from './pages/PetProductsLimit';
+import Login from './pages/login';
+import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Orders from './pages/Orders';
 import PetFood from './pages/PetFood';
 import Message from './pages/message';
@@ -12,6 +16,7 @@ import Home from './components/Client/Home';
 import Shop from './components/Client/Shop';
 import About from './components/Client/About';
 import Contact from './components/Client/Contact';
+import Category from './components/Client/Adoption';
 import Pet from './pages/pet';
 function App() {
   return (
@@ -30,10 +35,16 @@ function App() {
             <Route path="orders" element={<Orders />} />
             {/* <Route path="reports" element={<Reports />} /> */}
           </Route>
-          <Route path="home" element={<Home />} />
+
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="Shop" element={<Shop />} />
           <Route path="About" element={<About />} />
           <Route path="Contact" element={<Contact />} />
+                    <Route path="/Category" element={<Category />} />
         </Routes>
       </div>
     </Router>

@@ -15,6 +15,7 @@ const AdoptionRequests = () => {
         }
         const data = await response.json();
         setRequests(data);
+        console.log(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -25,6 +26,40 @@ const AdoptionRequests = () => {
     fetchRequests();
   }, []);
 
+  const handleApprove = async (requestId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/request/approve/${requestId}`,
+        {
+          method: "POST",
+        }
+      );
+      if (response.ok) {
+        setRequests((prev) => prev.filter((req) => req._id !== requestId));
+      }
+    } catch (err) {
+      setError("Error approving request: " + err.message);
+    }
+  };
+
+  const handleDeny = async (requestId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/request/deny/${requestId}`,
+        {
+          method: "POST",
+        }
+      );
+      if (response.ok) {
+        setRequests((prev) => prev.filter((req) => req._id !== requestId));
+      }
+    } catch (err) {
+      setError("Error denying request: " + err.message);
+    }
+  };
+
+  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -34,17 +69,34 @@ const AdoptionRequests = () => {
   }
 
   return (
-    <div className="AdoptionRequests">
-      <h1>Adoption Requests</h1>
+    <div className="adoption-requests">
+      <h1 className="title">Adoption Requests</h1>
       {requests.length === 0 ? (
-        <p>No adoption requests available.</p>
+        <p className="no-requests">No adoption requests available.</p>
       ) : (
-        <ul>
+        <ul className="request-list">
           {requests.map((request) => (
-            <li key={request._id}>
-              <Link to={`/adoption-request/${request._id}`}>
-                {`User: ${request.user.name}, Pet: ${request.pet.name}, Status: ${request.status}`}
+            <li key={request._id} className="request-item">
+              <Link
+                to={`/adoption-request/${request._id}`}
+                className="request-link"
+              >
+                {`User: ${request.user.username}, Pet: ${request.pet.name}, Status: ${request.status}`}
               </Link>
+              <div className="button-group">
+                <button
+                  onClick={() => handleApprove(request._id)}
+                  className="approve-button"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleDeny(request._id)}
+                  className="deny-button"
+                >
+                  Deny
+                </button>
+              </div>
             </li>
           ))}
         </ul>

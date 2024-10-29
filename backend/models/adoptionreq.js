@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const adoptionRequestSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
+        type: mongoose.Schema.Types.ObjectId, // Make sure this is ObjectId
+        ref: 'User', // Make sure this matches the name of your User model
+        required: true,
+    },
   pet: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId, // Reference to the pet's ID
     ref: 'Pet',
     required: true,
   },
@@ -22,8 +22,5 @@ const adoptionRequestSchema = new mongoose.Schema({
   },
 });
 
-// Create the AdoptionRequest model
 const AdoptionRequest = mongoose.model('AdoptionRequest', adoptionRequestSchema);
-
-// Export the AdoptionRequest model
 module.exports = AdoptionRequest;

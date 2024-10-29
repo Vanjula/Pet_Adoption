@@ -47,7 +47,7 @@ const deleteAnimal = async (animalId) => {
 // Get all animals
 const getAllAnimals = async () => {
   try {
-    const animals = await Animal.find();
+    const animals = await  Animal.find().limit(10);
     return { success: true, animals };
   } catch (error) {
     console.error('Error fetching animals:', error);
@@ -98,11 +98,28 @@ router.get('/all', async (req, res) => {
   res.status(result.success ? 200 : 500).json(result);
 });
 
+// Search animals based on query parameters
+router.get('/search', async (req, res) => {
+  const { name, breed, area, type } = req.query;
+
+  const filter = {};
+  if (name) filter.name = { $regex: name, $options: 'i' }; // Case-insensitive search
+  if (breed) filter.breed = { $regex: breed, $options: 'i' };
+  if (area) filter.area = { $regex: area, $options: 'i' };
+  if (type) filter.type = { $regex: type, $options: 'i' };
+
+  try {
+    const animals = await Animal.find(filter);
+    res.status(200).json({ success: true, data: animals });
+  } catch (error) {
+    console.error('Error during animal search:', error);
+    res.status(500).json({ success: false, error: 'Failed to search animals' });
+  }
+});
 
 router.post('/dash/content',async (req,res)=>{
  try {
   console.log('hi')
-        // Perform aggregation for breed and color
         const breedAnalytics = await Animal.aggregate([
             { $group: { _id: "$breed", count: { $sum: 1 } } },
         ]);
@@ -111,7 +128,6 @@ router.post('/dash/content',async (req,res)=>{
             { $group: { _id: "$color", count: { $sum: 1 } } },
         ]);
 
-        // Format the data for sending to the frontend
         const formattedBreedData = breedAnalytics.map(item => ({
             breed: item._id,
             count: item.count,

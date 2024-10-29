@@ -4,7 +4,14 @@ import dog_Img from "../components/assets/dog_img.png";
 const Pet = () => {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editingPetId, setEditingPetId] = useState(null);
+  const [editFormData, setEditFormData] = useState({
+    name: "",
+    breed: "",
+    age: "",
+  });
 
+  // Fetch all pets on component mount
   useEffect(() => {
     fetch("http://localhost:5000/pet/all")
       .then((response) => response.json())
@@ -18,18 +25,77 @@ const Pet = () => {
       });
   }, []);
 
+  // Loading state
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  const handleEdit = (id) => {
-    console.log("Edit pet with ID:", id);
-    // Add your edit logic here
+  // Handle edit button click
+  const handleEditClick = (pet) => {
+    setEditingPetId(pet._id);
+    setEditFormData({ name: pet.name, breed: pet.breed, age: pet.age });
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete pet with ID:", id);
-    // Add your delete logic here
+  // Handle edit form field change
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Save edited data to the server
+  const handleSaveEdit = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/pet/edit/${editingPetId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editFormData),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Edit successful:", data);
+        setPets((prevPets) =>
+          prevPets.map((pet) =>
+            pet._id === editingPetId ? { ...pet, ...editFormData } : pet
+          )
+        );
+        setEditingPetId(null); // Exit edit mode
+      } else {
+        console.error("Edit failed:", data.error);
+      }
+    } catch (error) {
+      console.error("Error editing pet:", error);
+    }
+  };
+
+  // Cancel editing
+  const handleCancelEdit = () => {
+    setEditingPetId(null);
+  };
+
+  // Delete pet from the server
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/pet/delete/${id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Delete successful:", data);
+        setPets((prevPets) => prevPets.filter((pet) => pet._id !== id));
+      } else {
+        console.error("Delete failed:", data.error);
+      }
+    } catch (error) {
+      console.error("Error deleting pet:", error);
+    }
   };
 
   return (
@@ -38,22 +104,55 @@ const Pet = () => {
       <ul>
         {pets.map((pet) => (
           <li key={pet._id} className="pet-item">
-            <h3>{pet.name}</h3>
-            <img src={dog_Img} alt="" />
-            <p>Breed: {pet.breed}</p>
-            <p>Age: {pet.age} years</p>
+            {editingPetId === pet._id ? (
+              <>
+                <input
+                  type="text"
+                  name="name"
+                  value={editFormData.name}
+                  onChange={handleEditChange}
+                  placeholder="Name"
+                />
+                <input
+                  type="text"
+                  name="breed"
+                  value={editFormData.breed}
+                  onChange={handleEditChange}
+                  placeholder="Breed"
+                />
+                <input
+                  type="number"
+                  name="age"
+                  value={editFormData.age}
+                  onChange={handleEditChange}
+                  placeholder="Age"
+                />
+                <button onClick={handleSaveEdit}>Save</button>
+                <button onClick={handleCancelEdit}>Cancel</button>
+              </>
+            ) : (
+              <>
+                <h3>{pet.name}</h3>
+                <img src={dog_Img} alt={pet.name} />
+                <p>Breed: {pet.breed}</p>
+                <p>Age: {pet.age} years</p>
 
-            <div className="pet-buttons">
-              <button onClick={() => handleEdit(pet._id)} className="edit-btn">
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(pet._id)}
-                className="delete-btn"
-              >
-                Delete
-              </button>
-            </div>
+                <div className="pet-buttons">
+                  <button
+                    onClick={() => handleEditClick(pet)}
+                    className="edit-btn"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(pet._id)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
+            )}
           </li>
         ))}
       </ul>

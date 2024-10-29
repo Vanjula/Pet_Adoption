@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import Header from './Header';
 import Shape from '../assets/Shape.svg';
@@ -38,10 +39,180 @@ import Food from '../assets/food.png';
 import RP from '../assets/rp.png';
 
 import Footer from './Footer';
+import React, { useEffect, useState } from "react";
+import Header from "./Header";
+import Shape from "../assets/Shape.svg";
+import Bird from "../assets/bird.png";
+import Vector from "../assets/Vector.svg";
+import dog_img from "../assets/dog_img.png";
+import Purple from "../assets/purple.jpg";
+import dog_food from "../assets/dog_food.png";
+import Shape_Cat from "../assets/Shape.svg";
+import HeartPawn from "../assets/heartpawn.svg";
+import HeartDog from "../assets/heartDog.svg";
+import Pawn from "../assets/pawn.svg";
+import SugarDog from "../assets/sugarDog.svg";
+import Pentagon from "../assets/pentagon.svg";
+import Blue from "../assets/blue.jpeg";
+import Cat from "../assets/cat.png";
+import Footer from "./Footer";
 import { FcLike } from "react-icons/fc";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
 import { BiRightArrowAlt } from "react-icons/bi";
 const Home = () => {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem("token"); // Check for token in local storage
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/cat/categories");
+        if (!response.ok) {
+          throw new Error("Failed to fetch categories");
+        }
+        const data = await response.json();
+        setCategories(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/PetFood/featured");
+        if (!response.ok) {
+          throw new Error("Failed to fetch featured products");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
+
+  const [Bestproducts, setBestProducts] = useState([]);
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    price: "",
+    image: "",
+    featured: false,
+  });
+
+  useEffect(() => {
+    const fetchBestProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/PetFood/best");
+        if (!response.ok) {
+          throw new Error("Failed to fetch best Bestproducts");
+        }
+        const data = await response.json();
+        setBestProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBestProducts();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/PetFood/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add product");
+      }
+      const addedProduct = await response.json();
+      setBestProducts((prev) => [...prev, addedProduct.product]); // Add the new product to the list
+      setNewProduct({ name: "", price: "", image: "", featured: false }); // Reset form
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const [animals, setAnimals] = useState([]);
+
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/pet/all"); // Replace with your endpoint
+        if (!response.ok) {
+          throw new Error("Failed to fetch animals");
+        }
+        const data = await response.json();
+        setAnimals(data.animals); // Assuming the response structure has an 'animals' key
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnimals();
+  }, []);
+
+  const handleAdoptionRequest = async (petId) => {
+    try {
+      const response = await fetch("http://localhost:5000/request/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: "Shyam",
+          pet: petId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create adoption request");
+      }
+
+      const data = await response.json();
+      alert("Adoption request created successfully!");
+      console.log("Adoption request created:", data);
+    } catch (error) {
+      console.error(error);
+      alert("There was an error creating the adoption request.");
+    }
+  };
+
+  if (loading) {
+    return <div>Loading featured products...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="Home">
       <Header />
@@ -62,7 +233,14 @@ const Home = () => {
               Adopt a pet, save a life, and gain a loyal friend for life.              </p>
               <p>Your future best friend is waiting for you at Pet Dabang!!!</p>
             </div>
-            <button className="Adopt-btn">Shop Now</button>
+            {!token && (
+              <button
+                className="Adopt-btn"
+                onClick={() => (window.location.href = "/login")}
+              >
+                Start
+              </button>
+            )}
           </div>
         </div>
         <div className="HomeRight">
@@ -78,7 +256,7 @@ const Home = () => {
             <BiRightArrow className="customeIcon" />
           </div>
         </div>
-        <div className="CategoryCards">
+        {/* <div className="CategoryCards">
           <div className="cards">
             <img src={Groom} alt="" className="card_img" />
             <div>
@@ -111,9 +289,23 @@ const Home = () => {
             </div>
             <p>64 products</p>
           </div>
+        </div> */}
+        <div className="CategoryCards">
+          <div className="cardsContainer">
+            {categories.map((category) => (
+              <div key={category._id} className="cards">
+                <img src={Purple} alt={category.name} className="card_img" />
+                <div>
+                  <p>{category.name}</p>
+                  <BiRightArrowAlt className="rightArrow" />
+                </div>
+                <p>{category.productCount} products</p>{" "}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="featuredProducts">
+      {/* <div className="featuredProducts">
         <h1>Featured products</h1>
         <div className="FeaturedProductCards">
           <div className="featuredcard">
@@ -146,6 +338,24 @@ const Home = () => {
               <FcLike className="like" />
             </div>
           </div>
+        </div>
+      </div> */}
+      <div className="featuredProducts">
+        <h1>Featured Products</h1>
+        <div className="FeaturedProductCards">
+          {products.map((product) => (
+            <div key={product._id} className="featuredcard">
+              <img src={product.image || dog_food} alt={product.name} />{" "}
+              {/* Use a placeholder if no image */}
+              <div className="NameAndLike">
+                <div>
+                  <div>{product.name}</div>
+                  <p>${product.price}</p>
+                </div>
+                <FcLike className="like" />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="CatImgContainer">
@@ -189,6 +399,88 @@ const Home = () => {
           </div>
         </div>
         <p>Best selling products</p>
+        {/* <div className="best-products">
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+          <div className="featuredcard">
+            <img src={dog_food} alt="" />
+            <div className="NameAndLike">
+              <div>
+                <div>Premimum Dog food</div>
+                <p>$ 45</p>
+              </div>
+              <FcLike className="like" />
+            </div>
+          </div>{" "}
+        </div> */}
         <div className="best-products">
           <div className="featuredcard">
             <img src={dog_food} alt="" />
@@ -270,9 +562,24 @@ const Home = () => {
               <FcLike className="like" />
             </div>
           </div>{" "}
+          {/* <h1>Best Products</h1>
+          <div className="FeaturedProductCards">
+            {products.map((product) => (
+              <div key={product._id} className="featuredcard">
+                <img src={product.image || dog_food} alt={product.name} />{" "}
+                <div className="NameAndLike">
+                  <div>
+                    <div>{product.name}</div>
+                    <p>${product.price}</p>
+                  </div>
+                  <FcLike className="like" />
+                </div>
+              </div>
+            ))}
+          </div> */}
         </div>
 
-        <div className="ByPet">
+        {/* <div className="ByPet">
           <div className="topContents">
             <p>Browse by Pet</p>
             <div>
@@ -301,6 +608,33 @@ const Home = () => {
               <img src={RabbitIcon} alt="" />
               Rabbit
             </div>
+          </div>
+        </div> */}
+        <div className="ByPet">
+          <div className="topContents">
+            <p>Browse by Pet</p>
+            <div>
+              <BiLeftArrow className="customeIcon" />
+              <BiRightArrow className="customeIcon" />
+            </div>
+          </div>
+          <div className="animalsCard">
+            {animals.length > 0 ? (
+              animals.map((animal) => (
+                <div key={animal._id} className="card2">
+                  <img src={animal.image || Cat} alt={animal.name} />
+                  <p>{animal.name}</p>
+                  <button
+                    className=""
+                    onClick={() => handleAdoptionRequest(animal._id)}
+                  >
+                    Adopt
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>No animals available.</p>
+            )}
           </div>
         </div>
       </div>
@@ -335,9 +669,9 @@ const Home = () => {
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </div>
   );
-}
+};
 
-export default Home
+export default Home;
