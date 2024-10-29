@@ -2264,38 +2264,44 @@ textarea {
   font-size: 1.2em;
   color: #555; /* Gray color for no requests message */
 }
-
+/* Request List Container */
 .request-list {
-  list-style: none; /* Remove default list styles */
-  padding: 0; /* Remove padding */
+  list-style-type: none;
+  padding: 0;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
+/* Request Item Styling */
 .request-item {
   display: flex;
-  align-items: center;
+
   justify-content: space-between;
-  padding: 10px;
-  border: 1px solid #ddd; /* Light border for separation */
-  border-radius: 5px;
-  margin-bottom: 10px; /* Space between items */
-  background-color: #fff; /* White background for items */
-  transition: box-shadow 0.3s; /* Transition for hover effect */
+  align-items: center;
+  gap: 20px;
+  padding: 15px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .request-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
+  transform: scale(1.02);
+  background-color: #f9f9f9;
 }
 
-.requestImg{
-  width: 200px;
-  height: 250px;
-}
+/* Request Link Styling */
 .request-link {
-  flex: 1; /* Allow the link to take up available space */
-  display: flex;
-  align-items: center;
-  text-decoration: none; /* Remove underline from link */
-  color: #007bff; /* Bootstrap primary color */
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  flex-grow: 1;
+  margin-right: 15px;
+  transition: color 0.3s ease;
 }
 
 .request-link img {
@@ -2305,18 +2311,23 @@ textarea {
   margin-right: 10px; /* Space between image and text */
 }
 
+/* Button Group */
 .button-group {
   display: flex; /* Flexbox for button layout */
   gap: 10px; /* Space between buttons */
 }
 
+/* Button Styles */
 .approve-button,
 .deny-button {
-  padding: 8px 12px; /* Padding for buttons */
-  border: none; /* Remove border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer on hover */
-  transition: background-color 0.3s; /* Smooth background transition */
+  
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 .approve-button {
@@ -2325,7 +2336,9 @@ textarea {
 }
 
 .approve-button:hover {
-  background-color: #218838; /* Darker green on hover */
+
+  background-color: #218838;
+  transform: scale(1.05);
 }
 
 .deny-button {
@@ -2340,6 +2353,30 @@ textarea {
 
 
 /* .ByPet {
+=======
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .request-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .request-link {
+    margin-bottom: 10px;
+  }
+
+  .button-group {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+
+.ByPet {
   margin: 0 auto;
   padding: 20px;
   max-width: 800px;

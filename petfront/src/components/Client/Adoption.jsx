@@ -8,9 +8,7 @@ import dog_img from "../assets/dog_img.png";
 import placeholder from "../assets/placeholder.png";
 import Footer from "./Footer";
 import Header from "./Header";
-
 const apiUrl = process.env.REACT_APP_API_URL ;
-
 const Adoption = () => {
   const [searchResults, setSearchResults] = useState([]);
 
