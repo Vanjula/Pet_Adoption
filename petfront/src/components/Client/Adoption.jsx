@@ -5,9 +5,9 @@ import Shape from "../assets/Shape.svg";
 import Bird from "../assets/bird.png";
 import Vector from "../assets/Vector.svg";
 import dog_img from "../assets/dog_img.png";
+import placeholder from "../assets/placeholder.png";
 import Footer from "./Footer";
 import Header from "./Header";
-import Placeimg from "https://via.placeholder.com/60";
 const Adoption = () => {
   const [searchResults, setSearchResults] = useState([]);
 
@@ -46,39 +46,24 @@ const Adoption = () => {
   return (
     <div className="adoption-container">
       <Header />
-      <div className="HomeBody">
-        <div className="Homeleft">
-          <img src={Shape} alt="background" className="BackGroundShape" />
-          <img src={Bird} alt="" className="BackGroundBird" />
-          <img src={Shape} alt="background2" className="BackGroundShape2" />
-          <div className="HomeContents">
-            <p className="p_color">Pet Dabang</p>
+      <div className="hero-section">
+        {/* Left Content - Text */}
+        <div className="hero-text">
+          <h1>Find Your New Best Friend</h1>
+          <p>
+            Explore a wide range of pets looking for a loving home. Adopt today
+            and make a difference in their lives.
+          </p>
+          <button onClick={() => (window.location.href = "/Category")}>
+            Start Your Journey
+          </button>
+        </div>
 
-            <div className="HomeContents_h">
-              <h1>A pet store with </h1>
-              <h1>everything you need</h1>
-            </div>
-            <div className="HomeContents_p">
-              <p>
-                Sociis blandit et pellentesque aliquet at quisque tortor lacinia
-              </p>
-              <p>nullam. Mattis aenean scelerisque dui libero</p>
-            </div>
-            {
-              <button
-                className="Adopt-btn"
-                onClick={() => (window.location.href = "/Category")}
-              >
-                Start
-              </button>
-            }
-          </div>
-        </div>
-        <div className="HomeRight">
-          <img src={Vector} alt="" className="BackGround" />
-          <img src={dog_img} alt="" className="DogImg" />
-        </div>
+        {/* Background Images */}
+        <img src={Shape} alt="Decorative Shape" className="background-shape" />
+        <img src={Bird} alt="Flying Bird" className="background-animal" />
       </div>
+
       <h2 className="adoption-title">Adopt a Pet</h2>
 
       {/* Pet Search */}
@@ -89,18 +74,18 @@ const Adoption = () => {
         {searchResults.length > 0 ? (
           searchResults.map((pet) => (
             <div key={pet._id} className="pet-card">
-              {/* Pet Image */}
-             
-
               <h3 className="pet-name">
                 {pet.name} - {pet.breed}
               </h3>
+              <img src={placeholder} alt="" />
               <p className="pet-type">Type: {pet.type}</p>
               <p className="pet-area">Area: {pet.area}</p>
               <p className="pet-age">Age: {pet.age} months</p>
               <p className="pet-contact">
                 Contact: {pet.email}, {pet.phone}
               </p>
+
+              {/* Show Interest Button */}
               <button
                 className="show-interest-button"
                 onClick={() => handleShowInterest(pet._id)}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import dog_food from "../components/assets/dog_food.png"; // Assuming the image path is correct
+import dog_food from "../components/assets/placeholder.png"; // Assuming the image path is correct
 
 const PetFood = () => {
   const [petsProducts, setPetsProducts] = useState([]);

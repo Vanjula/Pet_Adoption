@@ -10,30 +10,27 @@ const Contact = () => {
   return (
     <div className="Contact">
       <Header />
-      <div className="HomeBody">
-        <div className="Homeleft">
-          <img src={Shape} alt="background" className="BackGroundShape" />
-          <img src={Bird} alt="" className="BackGroundBird" />
-          <img src={Shape} alt="background2" className="BackGroundShape2" />
-          <div className="HomeContents">
-            <p className="p_color">Pet Dabang</p>
-
-            <div className="HomeContents_h">
-              <h1>A pet store with </h1>
-              <h1>everything you need</h1>
-            </div>
-            <div className="HomeContents_p">
-              <p>
-              We’re excited to help you find your new furry friend! 
-              </p>
-              <p>Please fill out the form below, and our team will reach out to you shortly with adoption details.</p>
-            </div>
-            <button className="Adopt-btn">Shop Now</button>
+      <div className="vallin-section">
+        <div className="vallin-left">
+          <h1 className="brand-title">Pet Dabang</h1>
+          <div className="vallin-header">
+            <h1 className="vallin-title">
+              A Pet Store with Everything You Need
+            </h1>
+            <p className="vallin-description">
+              We’re excited to help you find your new furry friend! Our team is
+              here to assist you in the adoption process and answer any
+              questions you may have.
+            </p>
+            <button className="cta-button">Shop Now</button>
           </div>
         </div>
-        <div className="HomeRight">
-          <img src={Vector} alt="" className="BackGround" />
-          <img src={dog_img} alt="" className="DogImg" />
+        <div className="vallin-right">
+          <h2 className="get-in-touch-title">Get in Touch</h2>
+          <p className="get-in-touch-description">
+            Have questions? We’d love to hear from you! Fill out our contact
+            form to reach out to our team.
+          </p>
         </div>
       </div>
 
@@ -52,20 +49,29 @@ const Contact = () => {
             <div className="form-row">
               <textarea name="message" placeholder="Your message..." />
             </div>
-            <button type="submit" className="SendMessageBtn">Send Message</button>
+            <button type="submit" className="SendMessageBtn">
+              Send Message
+            </button>
           </form>
         </div>
 
         {/* Contact Info Section */}
         <div className="ContactInfo">
-          <p>
-          Find your perfect companion and start a new chapter together.
-          </p>
+          <p>Find your perfect companion and start a new chapter together.</p>
           <div className="ContactDetails">
-            <div><i className="fas fa-map-marker-alt"></i>15, Gandhi Street, Anna Nagar, Chennai, Tamil Nadu 600040</div>
-            <div><i className="fas fa-envelope"></i>petdabang.gmail.com</div>
-            <div><i className="fas fa-phone"></i>+379 871-8371</div>
-            <div><i className="fas fa-clock"></i> Mon - Fri: 10AM - 10PM</div>
+            <div>
+              <i className="fas fa-map-marker-alt"></i>15, Gandhi Street, Anna
+              Nagar, Chennai, Tamil Nadu 600040
+            </div>
+            <div>
+              <i className="fas fa-envelope"></i>petdabang.gmail.com
+            </div>
+            <div>
+              <i className="fas fa-phone"></i>+379 871-8371
+            </div>
+            <div>
+              <i className="fas fa-clock"></i> Mon - Fri: 10AM - 10PM
+            </div>
           </div>
         </div>
       </div>

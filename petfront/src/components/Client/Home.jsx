@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import Header from './Header';
 import Shape from '../assets/Shape.svg';
 import Bird from '../assets/bird.png';
@@ -37,25 +36,10 @@ import CombIcon from '../assets/comb.png';
 import SampIcon from '../assets/samp.png';
 import Food from '../assets/food.png';
 import RP from '../assets/rp.png';
+import placeholder from "../assets/placeholder.png";
 
 import Footer from './Footer';
-import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Shape from "../assets/Shape.svg";
-import Bird from "../assets/bird.png";
-import Vector from "../assets/Vector.svg";
-import dog_img from "../assets/dog_img.png";
-import Purple from "../assets/purple.jpg";
-import dog_food from "../assets/dog_food.png";
-import Shape_Cat from "../assets/Shape.svg";
-import HeartPawn from "../assets/heartpawn.svg";
-import HeartDog from "../assets/heartDog.svg";
-import Pawn from "../assets/pawn.svg";
-import SugarDog from "../assets/sugarDog.svg";
-import Pentagon from "../assets/pentagon.svg";
 import Blue from "../assets/blue.jpeg";
-import Cat from "../assets/cat.png";
-import Footer from "./Footer";
 import { FcLike } from "react-icons/fc";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
 import { BiRightArrowAlt } from "react-icons/bi";
@@ -230,7 +214,8 @@ const Home = () => {
             </div>
             <div className="HomeContents_p">
               <p>
-              Adopt a pet, save a life, and gain a loyal friend for life.              </p>
+                Adopt a pet, save a life, and gain a loyal friend for life.{" "}
+              </p>
               <p>Your future best friend is waiting for you at Pet Dabang!!!</p>
             </div>
             {!token && (
@@ -294,7 +279,11 @@ const Home = () => {
           <div className="cardsContainer">
             {categories.map((category) => (
               <div key={category._id} className="cards">
-                <img src={Purple} alt={category.name} className="card_img" />
+                <img
+                  src={placeholder}
+                  alt={category.name}
+                  className="card_img"
+                />
                 <div>
                   <p>{category.name}</p>
                   <BiRightArrowAlt className="rightArrow" />
@@ -345,7 +334,7 @@ const Home = () => {
         <div className="FeaturedProductCards">
           {products.map((product) => (
             <div key={product._id} className="featuredcard">
-              <img src={product.image || dog_food} alt={product.name} />{" "}
+              <img src={product.image || placeholder} alt={product.name} />{" "}
               {/* Use a placeholder if no image */}
               <div className="NameAndLike">
                 <div>
@@ -373,7 +362,11 @@ const Home = () => {
             </div>
             <div className="HomeContents_p">
               <p>
-              Are you looking for a loving pet to add joy and warmth to your home? At Pet Dabang, we believe that every pet deserves a caring family. Whether you're adopting your first pet or adding to your family, we make the process simple, transparent, and stress-free.
+                Are you looking for a loving pet to add joy and warmth to your
+                home? At Pet Dabang, we believe that every pet deserves a caring
+                family. Whether you're adopting your first pet or adding to your
+                family, we make the process simple, transparent, and
+                stress-free.
               </p>
             </div>
             <button className="Adopt-btn">Learn More</button>
@@ -622,7 +615,7 @@ const Home = () => {
             {animals.length > 0 ? (
               animals.map((animal) => (
                 <div key={animal._id} className="card2">
-                  <img src={animal.image || Cat} alt={animal.name} />
+                  <img src={animal.image || placeholder} alt={animal.name} />
                   <p>{animal.name}</p>
                   <button
                     className=""
@@ -647,7 +640,10 @@ const Home = () => {
             <div className="tagger">News</div>
             <p>12 July 2024</p>
             <p>
-            Pet adoption is more than just finding a furry friend—it's about giving an animal a second chance at a loving home. Thousands of dogs, cats, and other animals are waiting in shelters for families to bring them into their lives. 
+              Pet adoption is more than just finding a furry friend—it's about
+              giving an animal a second chance at a loving home. Thousands of
+              dogs, cats, and other animals are waiting in shelters for families
+              to bring them into their lives.
             </p>
           </div>
           <div className="NewsCard">
@@ -655,7 +651,10 @@ const Home = () => {
             <div className="tagger">News</div>
             <p>18 May 2024</p>
             <p>
-            Senior pets often get overlooked in adoption centers, but they have so much love to give. Older animals tend to be calmer, more experienced, and often make great companions for families or individuals looking for a low-maintenance pet.
+              Senior pets often get overlooked in adoption centers, but they
+              have so much love to give. Older animals tend to be calmer, more
+              experienced, and often make great companions for families or
+              individuals looking for a low-maintenance pet.
             </p>
           </div>
           <div className="NewsCard">
@@ -663,7 +662,13 @@ const Home = () => {
             <div className="tagger">News</div>
             <p>02 June 2024</p>
             <p>
-            A pet's health is a top priority for any responsible owner. Regular veterinary check-ups, a balanced diet, and proper exercise are essential to keeping your pet in top shape. Whether it’s learning about pet-safe foods or understanding their emotional needs, ensuring your pet's well-being leads to a longer, happier life together. Let’s help our pets thrive by giving them the care and attention they need.
+              A pet's health is a top priority for any responsible owner.
+              Regular veterinary check-ups, a balanced diet, and proper exercise
+              are essential to keeping your pet in top shape. Whether it’s
+              learning about pet-safe foods or understanding their emotional
+              needs, ensuring your pet's well-being leads to a longer, happier
+              life together. Let’s help our pets thrive by giving them the care
+              and attention they need.
             </p>
           </div>
         </div>

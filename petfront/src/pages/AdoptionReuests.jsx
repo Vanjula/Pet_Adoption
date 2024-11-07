@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import placeholder from "../components/assets/placeholder.png";
 
 const AdoptionRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -58,8 +59,6 @@ const AdoptionRequests = () => {
     }
   };
 
-  
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -81,6 +80,7 @@ const AdoptionRequests = () => {
                 to={`/adoption-request/${request._id}`}
                 className="request-link"
               >
+                <img src={placeholder} alt="" className="requestImg"/>
                 {`User: ${request.user.username}, Pet: ${request.pet.name}, Status: ${request.status}`}
               </Link>
               <div className="button-group">

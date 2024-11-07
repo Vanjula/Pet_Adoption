@@ -59,11 +59,11 @@ function Sidebar() {
             <FaRegMessage /> <p>Messages</p>
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/dashboard/food" activeClassName="active">
             <IoSettings /> <p>Pet Food</p>
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/dashboard/sign-out" activeClassName="active">
             <PiSignOut /> <p>Sign Out</p>

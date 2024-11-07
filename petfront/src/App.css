@@ -369,6 +369,7 @@ a {
 } */
 
 /* ========================================   Client ============================== */
+
 .ClientHeader {
   display: flex;
   flex-direction: column;
@@ -585,11 +586,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-<<<<<<< HEAD
   color: rgb(124, 119, 119);
-=======
-  color: rgb(26, 21, 21);
->>>>>>> 3ac9e09 (ready to deploy)
+  /* color: rgb(26, 21, 21); */
   font-size: 20px;
   font-weight: 700;
 }
@@ -653,8 +651,13 @@ a {
    background-color: #000;
   
 }
-
-.CategoryCards{
+.CategoryCards {
+  display: flex;
+    padding: 0 5rem;
+  gap: 4rem;
+  width: 100%;
+}
+.CategoryCards .cardsContainer{
   display: grid;
     padding: 0 5rem;
   grid-template-columns: repeat(auto-fill,minmax(20%,1fr));
@@ -856,28 +859,122 @@ a {
   width: 100%;
   height: 100%;
 }
-.ByPet{
+/* Base container */
+.ByPet {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 2rem;
+  background-color: #f8f9fa; /* Light gray background */
+  font-family: Arial, sans-serif;
 }
 
-.ByPet .topContents{
-    display: flex;
+.ByPet .topContents {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem 5rem;
+  width: 100%;
+  padding: 2rem 5%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.ByPet .topContents p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.ByPet .topContents .customeIcon {
+  font-size: 2rem;
+  color: #007bff; /* Primary color */
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.ByPet .topContents .customeIcon:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+.ByPet .animalsCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
   width: 100%;
 }
 
-.ByPet .animalsCard{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(15%,1fr));
-    gap: 2.3rem;
-    width: 100%;
+.ByPet .card2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ByPet .card2:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ByPet .card2 img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.ByPet .card2 p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.ByPet .card2 button {
+  background-color: #28a745;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ByPet .card2 button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ByPet .topContents {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+
+  .ByPet .animalsCard {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .ByPet .topContents p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ByPet .card2 img {
+    height: 160px;
+  }
 }
 
 .animalsCard .card{
@@ -1346,13 +1443,13 @@ a {
   background-color: #333;
   color: white;
 }
-.ByPet {
+/* .ByPet {
   margin-top: 60px;
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .topContents {
   display: flex;
@@ -1541,15 +1638,17 @@ a {
   color: #666;
   margin: 0 10px;
 }
-  .shop-by-pet {
+/* Main container */
+.shop-by-pet {
   text-align: center;
   margin-top: 50px;
 }
 
+/* Button and icon container */
 .pet-selection {
   display: flex;
   justify-content: center;
-  gap: 80px; /* Keep the gap between buttons */
+  gap: 80px; /* Space between buttons */
   margin-top: 40px;
 }
 
@@ -1558,52 +1657,57 @@ a {
   border: none;
   cursor: pointer;
   text-align: center;
-  padding: 20px; /* Add padding for larger clickable area */
+  padding: 20px; /* Larger clickable area */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover transition */
 }
 
+.pet-selection button:hover {
+  transform: translateY(-3px); /* Slight lift effect on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hover shadow effect */
+}
+
+/* Card styling */
 .card {
   display: flex;
   flex-direction: column; /* Stack icon and text */
-  align-items: center; /* Center items */
-  padding: 20px; /* Padding around the card */
-  background-color: rgba(255, 255, 255, 0.9); /* Light background color for the card */
-  border-radius: 15px; /* Rounded corners for the rectangular card */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect for depth */
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Light background */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Regular shadow */
+  transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
+/* Icon styling */
 .pet-icon {
-  width: 140px; /* Reduced icon size */
+  width: 140px;
   height: 140px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; /* Smooth scale transition */
 }
 
 .pet-icon.active {
-  transform: scale(1.2); /* Scale up when active */
-  border-radius: 50%; /* Add rounded borders */
-  border: 3px solid orange; /* Border when active */
+  transform: scale(1.1); /* Slightly larger when active */
+  border-radius: 50%;
+  border: 3px solid orange; /* Orange border when active */
 }
 
+/* Text styling */
 .pet-selection p {
   margin-top: 10px;
-  font-size: 1.8rem; /* Reduced font size */
-  font-weight: bold; /* Make the text bold */
-  color: #333; /* Dark color for readability */
-  font-family: 'Dancing Script', cursive; /* Optional: Stylish font */
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  font-family: 'Dancing Script', cursive;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
-/* Add hover effects to the text */
 .pet-selection button:hover p {
-  font-size: 2.2rem; /* Reduced hover font size */
-  transform: scale(1.1); /* Slight scale effect on hover */
-  color: orange; /* Change text color on hover */
+  color: orange; /* Text color changes on hover */
 }
-/* Main Card Structure (already defined, no changes needed) */
 
 /* Add price styling to avoid overlap */
 .card .price {
@@ -2150,92 +2254,107 @@ textarea {
 .testimonial-controls button:hover {
   color: #FF5733;
 }
-
 .adoption-requests {
-  max-width: 1400px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 4rem 6rem;
-  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for better readability */
   border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .title {
+  font-size: 2em;
   text-align: center;
-  color: #333;
-  padding: 5rem;
+  margin-bottom: 20px;
+  color: #333; /* Darker color for the title */
 }
 
 .no-requests {
   text-align: center;
-  color: #888;
-  font-style: italic;
+  font-size: 1.2em;
+  color: #555; /* Gray color for no requests message */
 }
 
 .request-list {
-  list-style-type: none;
-  padding: 0;
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove padding */
 }
 
 .request-item {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #eee;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px;
+  margin-bottom: 10px; /* Space between items */
+  background-color: #fff; /* White background for items */
+  transition: box-shadow 0.3s; /* Transition for hover effect */
 }
 
+.request-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
+}
+
+.requestImg{
+  width: 200px;
+  height: 250px;
+}
 .request-link {
-  flex-grow: 1;
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  flex: 1; /* Allow the link to take up available space */
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove underline from link */
+  color: #007bff; /* Bootstrap primary color */
 }
 
-.request-link:hover {
-  color: #0056b3;
+.request-link img {
+  width: 50px; /* Set a fixed width for images */
+  height: 50px; /* Set a fixed height for images */
+  border-radius: 4px; /* Slight rounding for images */
+  margin-right: 10px; /* Space between image and text */
 }
 
 .button-group {
-  display: flex;
-  gap: 10px;
+  display: flex; /* Flexbox for button layout */
+  gap: 10px; /* Space between buttons */
 }
 
 .approve-button,
 .deny-button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  padding: 8px 12px; /* Padding for buttons */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth background transition */
 }
 
 .approve-button {
-  background-color: #28a745;
-  color: white;
+  background-color: #28a745; /* Green color for approve */
+  color: white; /* White text */
 }
 
 .approve-button:hover {
-  background-color: #218838;
+  background-color: #218838; /* Darker green on hover */
 }
 
 .deny-button {
-  background-color: #dc3545;
-  color: white;
+  background-color: #dc3545; /* Red color for deny */
+  color: white; /* White text */
 }
 
 .deny-button:hover {
-  background-color: #c82333;
+  background-color: #c82333; /* Darker red on hover */
 }
 
-.ByPet {
+
+
+/* .ByPet {
   margin: 0 auto;
   padding: 20px;
   max-width: 800px;
-}
+} */
 
 .topContents {
   display: flex;
@@ -2559,108 +2678,333 @@ textarea {
 }
 
 
-/* Adoption.css */
+/* Main container styling */
 .adoption-container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-.adoption-title {
-  font-size: 2.5rem;
-  color: #4a90e2;
-  text-align: center;
-  margin: 20px 0;
-}
-
-/* Pet Results Container */
-.pet-results {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.pet-card {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 280px;
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.pet-card:hover {
-  transform: scale(1.05);
-}
-
-/* Pet Image */
-.pet-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-/* Text Styles */
-.pet-name {
-  font-size: 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
   color: #333;
-  margin: 5px 0;
+  padding: 0 20px;
 }
 
-.pet-type,
-.pet-area,
-.pet-age,
-.pet-contact {
-  font-size: 1rem;
-  color: #555;
-  margin: 5px 0;
+/* Hero section */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);
+  padding: 4rem 2rem;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Button Styles */
-.show-interest-button {
-  background-color: #4a90e2;
-  color: #ffffff;
+/* Hero text styling */
+.hero-text {
+  max-width: 600px;
+  color: #fff;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-text button {
+  padding: 0.8rem 2rem;
+  background-color: #ff5722;
+  color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-
-
-/* No Results Message */
-.no-results-message {
-  font-size: 1.2rem;
-  color: #777;
-  text-align: center;
-  padding: 20px;
+.hero-text button:hover {
+  background-color: #e64a19;
 }
+
+/* Background images */
+.hero-section .background-shape,
+.hero-section .background-animal {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.2;
+  transition: transform 0.4s ease;
+}
+
+.hero-section .background-shape {
+  top: 20px;
+  right: 10%;
+  width: 150px;
+}
+
+.hero-section .background-animal {
+  bottom: -20px;
+  left: 0;
+  width: 300px;
+  z-index: 0;
+}
+
+/* Hover effect on background images */
+.hero-section:hover .background-shape,
+.hero-section:hover .background-animal {
+  transform: scale(1.05);
+}
+
+/* Pet Title Styling */
+.adoption-title {
+  margin-top: 3rem;
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+}
+
+
+/* Pet Results Container */
+.pet-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Pet Card Styling */
+.pet-card {
+  background: #fefefe;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #333;
+  position: relative;
+}
+
+.pet-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Pet Name and Type */
+.pet-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff5722;
+  margin-bottom: 0.5rem;
+}
+
+.pet-type {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+/* Additional Pet Info */
+.pet-area,
+.pet-age,
+.pet-contact {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.3rem 0;
+}
+
+.pet-contact {
+  color: #00796b;
+}
+
+/* Show Interest Button */
 .show-interest-button {
-  background-color: #27ae60;
-  color: white;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  background-color: #ff5722;
+  color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .show-interest-button:hover {
-  background-color: #219653;
+  background-color: #e64a19;
 }
 
+/* No Results Message */
 .no-results-message {
+  color: #888;
+  font-size: 1.2rem;
   text-align: center;
-  color: #e74c3c;
+  padding: 2rem;
+}
+
+/* Vallin Section */
+.vallin-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6rem 2rem; /* Increased padding for a spacious feel */
+  background: #f0f4f8; /* Light background for contrast */
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Vallin Left Content */
+.vallin-left {
+  max-width: 50%;
+  position: relative;
+  padding: 2rem;
+}
+
+.vallin-bg-shape,
+.vallin-bg-bird,
+.vallin-bg-shape2 {
+  position: absolute;
+  opacity: 0.2; /* Lower opacity for a softer background */
+}
+
+.vallin-bg-shape {
+  top: -20px;
+  left: -50px;
+  width: 300px;
+}
+
+.vallin-bg-bird {
+  top: 60px;
+  right: -40px;
+  width: 120px;
+}
+
+.vallin-bg-shape2 {
+  bottom: -30px;
+  left: 120px;
+  width: 250px;
+}
+
+/* Vallin Content */
+.brand-title {
+  font-size: 2rem;
   font-weight: bold;
+  color: #ff6f61; /* Updated color for the brand title */
+  margin-bottom: 1rem;
+}
+
+.vallin-header .vallin-title {
+  font-size: 3rem; /* Increased size for emphasis */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.vallin-header .vallin-description {
+  font-size: 1.2rem; /* Slightly larger for better readability */
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Call-to-Action Button */
+.cta-button {
+  padding: 1rem 2.5rem; /* Adjusted padding for a better button size */
+  font-size: 1.2rem; /* Slightly larger font for the button */
+  font-weight: 600;
+  background-color: #ff6f61; /* Updated button color */
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+}
+
+.cta-button:hover {
+  background-color: #e55a4c; /* Darker shade on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+/* Vallin Section */
+.vallin-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6rem 2rem;
+  background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background for appeal */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Vallin Left Content */
+.vallin-left {
+  max-width: 50%;
+  padding: 2rem;
+  color: #fff; /* White text for contrast */
+}
+
+.brand-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.vallin-header .vallin-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.vallin-header .vallin-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Call-to-Action Button */
+.cta-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #fff; /* Button background */
+  color: #ff7e5f; /* Text color matching the theme */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #ffcccb; /* Light pink on hover */
+  transform: translateY(-2px);
+}
+
+/* Vallin Right Content */
+.vallin-right {
+  max-width: 50%;
+  padding: 2rem;
+  color: #fff; /* White text for consistency */
+  text-align: center; /* Centered text for better layout */
+}
+
+.get-in-touch-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.get-in-touch-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
