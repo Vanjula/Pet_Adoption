@@ -9,6 +9,7 @@ const Pet = () => {
     name: "",
     breed: "",
     age: "",
+    image: null, // For storing the selected image file
   });
 
   // Fetch all pets on component mount
@@ -33,10 +34,15 @@ const Pet = () => {
   // Handle edit button click
   const handleEditClick = (pet) => {
     setEditingPetId(pet._id);
-    setEditFormData({ name: pet.name, breed: pet.breed, age: pet.age });
+    setEditFormData({
+      name: pet.name,
+      breed: pet.breed,
+      age: pet.age,
+      image: null,
+    });
   };
 
-  // Handle edit form field change
+  // Handle form field change
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditFormData((prevData) => ({
@@ -45,17 +51,33 @@ const Pet = () => {
     }));
   };
 
+  // Handle image upload
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditFormData((prevData) => ({
+        ...prevData,
+        image: file, // Save the uploaded file
+      }));
+    }
+  };
+
   // Save edited data to the server
   const handleSaveEdit = async () => {
+    const formData = new FormData();
+    formData.append("name", editFormData.name);
+    formData.append("breed", editFormData.breed);
+    formData.append("age", editFormData.age);
+    if (editFormData.image) {
+      formData.append("image", editFormData.image);
+    }
+
     try {
       const response = await fetch(
         `http://localhost:5000/pet/edit/${editingPetId}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(editFormData),
+          body: formData,
         }
       );
       const data = await response.json();
@@ -127,13 +149,22 @@ const Pet = () => {
                   onChange={handleEditChange}
                   placeholder="Age"
                 />
+                <input type="file" name="image" onChange={handleImageChange} />
+                {editFormData.image && (
+                  <p>Selected Image: {editFormData.image.name}</p>
+                )}
                 <button onClick={handleSaveEdit}>Save</button>
                 <button onClick={handleCancelEdit}>Cancel</button>
               </>
             ) : (
               <>
                 <h3>{pet.name}</h3>
-                <img src={dog_Img} alt={pet.name} />
+                <img
+                  src={pet.image?.url} // Ensure you are using the correct property of the image object
+                  alt={pet.name}
+                  className="pet-image"
+                  loading="lazy"
+                />
                 <p>Breed: {pet.breed}</p>
                 <p>Age: {pet.age} years</p>
 

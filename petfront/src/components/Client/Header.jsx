@@ -1,12 +1,13 @@
-import React from 'react'
+import React from "react";
 import { IoIosCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
-import Group from '../assets/Group.svg'
+import Group from "../assets/Group.svg";
 import { FaSearch } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+
 const Header = () => {
   return (
     <div className="ClientHeader">
@@ -31,31 +32,46 @@ const Header = () => {
         </div>
         <ul>
           <li>
-            <NavLink to="/" activeClassName="active">
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/Shop" activeClassName="active">
+            <NavLink
+              to="/Shop"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Shop
             </NavLink>
-          </li>{" "}
+          </li>
           <li>
-            <NavLink to="/About" activeClassName="active">
+            <NavLink
+              to="/About"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               About us
             </NavLink>
-          </li>{" "}
+          </li>
           <li>
-            <NavLink to="/Category" activeClassName="active">
+            <NavLink
+              to="/Category"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Adoption
             </NavLink>
           </li>
           <li>
-            <NavLink to="/Contact" activeClassName="active">
+            <NavLink
+              to="/Contact"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Contact us
             </NavLink>
           </li>
-        </ul>{" "}
+        </ul>
         <div className="NavbarRight">
           <form action="">
             <input type="text" placeholder="Search ....." />
@@ -67,6 +83,6 @@ const Header = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Header
+export default Header;

@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 // Define the schema for the pet data
 const petSchema = new mongoose.Schema({
   ID: {
-    type: Number, // Use Number for integer values
-    required: true
+    type: Number, 
   },
   name: {
     type: String,
@@ -12,12 +11,10 @@ const petSchema = new mongoose.Schema({
   },
   age: {
     type: Number, 
-    required: true
   },
   sex: {
     type: String,
     enum: ['male', 'female'], 
-    required: true
   },
   breed: {
     type: String,
@@ -25,32 +22,26 @@ const petSchema = new mongoose.Schema({
   },
   date_found: {
     type: Date,
-    required: true
   },
   adoptable_from: {
     type: Date,
-    required: true
   },
   posted: {
     type: Date,
-    required: true
   },
   color: {
     type: String,
-    required: true
   },
   coat: {
     type: String,
-    required: true
   },
   size: {
     type: String,
-    required: true
   },
+  image: { type: Buffer },
   neutered: {
     type: String,
     enum: ['yes', 'no'],
-    required: true
   }
 });
 

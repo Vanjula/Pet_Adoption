@@ -11,7 +11,7 @@ import Header from "./Header";
 const Adoption = () => {
   const [searchResults, setSearchResults] = useState([]);
 
-  // Fetch default pets when component mounts
+ 
   useEffect(() => {
     const fetchDefaultPets = async () => {
       try {
@@ -24,7 +24,7 @@ const Adoption = () => {
     fetchDefaultPets();
   }, []);
 
-  // Handle Show Interest button click
+  
   const handleShowInterest = async (petId) => {
     const token = localStorage.getItem("token");
 
@@ -90,7 +90,7 @@ const Adoption = () => {
                 className="show-interest-button"
                 onClick={() => handleShowInterest(pet._id)}
               >
-                Show Interest
+              Adopt
               </button>
             </div>
           ))

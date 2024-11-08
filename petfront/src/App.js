@@ -18,6 +18,7 @@ import About from './components/Client/About';
 import Contact from './components/Client/Contact';
 import Category from './components/Client/Adoption';
 import Pet from './pages/pet';
+import AddPet from './pages/AddPet';
 function App() {
   return (
     <Router>
@@ -26,7 +27,7 @@ function App() {
           <Route path="/dashboard/*" element={<Dashboard />}>
             <Route path="" element={<DashboardContent />} />
               <Route path="pet" element={<Pet/>} />
-
+            <Route path="addpet" element={<AddPet/>} />
             <Route path="products" element={< PetProducts />} />
             <Route path="food" element={<PetFood />} />
             <Route path="product-limits" element={<PetProductsLimit />} />

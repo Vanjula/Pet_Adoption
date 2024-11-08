@@ -49,6 +49,15 @@ const Home = () => {
   const [error, setError] = useState(null);
   const token = localStorage.getItem("token"); // Check for token in local storage
 
+  const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -144,24 +153,28 @@ const Home = () => {
 
   const [animals, setAnimals] = useState([]);
 
-  useEffect(() => {
-    const fetchAnimals = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/pet/all"); // Replace with your endpoint
-        if (!response.ok) {
-          throw new Error("Failed to fetch animals");
-        }
-        const data = await response.json();
-        setAnimals(data.animals); // Assuming the response structure has an 'animals' key
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+ useEffect(() => {
+   const fetchAnimals = async () => {
+     try {
+       const response = await fetch("http://localhost:5000/pet/all"); // Replace with your endpoint
+       if (!response.ok) {
+         throw new Error("Failed to fetch animals");
+       }
+       const data = await response.json();
+       console.log(data);
+       setAnimals(data.animals);
+     } catch (err) {
+       setError(err.message);
+     } finally {
+       setLoading(false);
+     }
+   };
 
-    fetchAnimals();
-  }, []);
+   fetchAnimals();
+ }, []);
+
+
+ 
 
   const handleAdoptionRequest = async (petId) => {
     try {
@@ -277,20 +290,22 @@ const Home = () => {
         </div> */}
         <div className="CategoryCards">
           <div className="cardsContainer">
-            {categories.map((category) => (
-              <div key={category._id} className="cards">
-                <img
-                  src={placeholder}
-                  alt={category.name}
-                  className="card_img"
-                />
-                <div>
-                  <p>{category.name}</p>
-                  <BiRightArrowAlt className="rightArrow" />
+            {categories.map((category) => {
+              const color1 = getRandomColor();
+              const color2 = getRandomColor();
+              const gradientStyle = {
+                background: `linear-gradient(45deg, ${color1}, ${color2})`,
+              };
+
+              return (
+                <div key={category._id} className="cards" style={gradientStyle}>
+                  <div>
+                    <p>{category.name}</p>
+                  </div>
+                  <p>{category.productCount} products</p>
                 </div>
-                <p>{category.productCount} products</p>{" "}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -615,12 +630,14 @@ const Home = () => {
             {animals.length > 0 ? (
               animals.map((animal) => (
                 <div key={animal._id} className="card2">
-                  <img src={animal.image || placeholder} alt={animal.name} />
+                  {/* Ensure animal.image is a valid base64 string */}
+                  {animal.image ? (
+                    <img src={animal.image} alt={animal.name} />
+                  ) : (
+                    <p>No image available</p>
+                  )}
                   <p>{animal.name}</p>
-                  <button
-                    className=""
-                    onClick={() => handleAdoptionRequest(animal._id)}
-                  >
+                  <button onClick={() => handleAdoptionRequest(animal._id)}>
                     Adopt
                   </button>
                 </div>

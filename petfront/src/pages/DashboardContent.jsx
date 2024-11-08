@@ -4,7 +4,7 @@ import TotalSales from '../components/assets/Icon.png'
 const DashboardContent = () => {
   return (
     <div className="DashboardContent">
-      <div className="SalesAndVistor">
+      {/* <div className="SalesAndVistor">
         <div className="Sales">
           <div className="SalesTop">
             <div>
@@ -47,7 +47,7 @@ const DashboardContent = () => {
             <p>Vistor Insights</p>
             
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
