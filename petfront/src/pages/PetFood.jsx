@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import dog_food from "../components/assets/placeholder.png"; // Assuming the image path is correct
+import { Link } from "react-router-dom";
+
+const apiUrl = process.env.REACT_APP_API_URL; // Make sure this is correctly defined in your .env file
 
 const PetFood = () => {
   const [petsProducts, setPetsProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/PetFood/all")
+    fetch(`${apiUrl}/PetFood/all`)
       .then((response) => response.json())
       .then((data) => {
         setPetsProducts(data.PetFood);
@@ -24,12 +27,12 @@ const PetFood = () => {
 
   const handleEdit = (id) => {
     console.log("Edit product with ID:", id);
-    // Add your edit logic here
+    
   };
 
   const handleDelete = (id) => {
     console.log("Delete product with ID:", id);
-    // Add your delete logic here
+    
   };
 
   return (
@@ -56,6 +59,7 @@ const PetFood = () => {
             </div>
           </li>
         ))}
+        
       </ul>
     </div>
   );

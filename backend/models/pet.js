@@ -38,7 +38,7 @@ const petSchema = new mongoose.Schema({
   size: {
     type: String,
   },
-  image: { type: Buffer },
+  image: { type: String },
   neutered: {
     type: String,
     enum: ['yes', 'no'],

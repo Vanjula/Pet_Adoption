@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import placeholder from "../components/assets/placeholder.png";
 
+const apiUrl = process.env.REACT_APP_API_URL; 
+
 const AdoptionRequests = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,13 +12,12 @@ const AdoptionRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await fetch("http://localhost:5000/request/all");
+        const response = await fetch(`${apiUrl}/request/all`);
         if (!response.ok) {
           throw new Error("Failed to fetch adoption requests");
         }
         const data = await response.json();
         setRequests(data);
-        console.log(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -29,12 +30,9 @@ const AdoptionRequests = () => {
 
   const handleApprove = async (requestId) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/request/approve/${requestId}`,
-        {
-          method: "POST",
-        }
-      );
+      const response = await fetch(`${apiUrl}/request/approve/${requestId}`, {
+        method: "POST",
+      });
       if (response.ok) {
         setRequests((prev) => prev.filter((req) => req._id !== requestId));
       }
@@ -45,12 +43,9 @@ const AdoptionRequests = () => {
 
   const handleDeny = async (requestId) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/request/deny/${requestId}`,
-        {
-          method: "POST",
-        }
-      );
+      const response = await fetch(`${apiUrl}/request/deny/${requestId}`, {
+        method: "POST",
+      });
       if (response.ok) {
         setRequests((prev) => prev.filter((req) => req._id !== requestId));
       }
@@ -80,8 +75,14 @@ const AdoptionRequests = () => {
                 to={`/adoption-request/${request._id}`}
                 className="request-link"
               >
-                <img src={placeholder} alt="" className="requestImg"/>
-                {`User: ${request.user.username}, Pet: ${request.pet.name}, Status: ${request.status}`}
+                <img
+                  src={request.pet ? request.pet.imageUrl : placeholder}
+                  alt="Pet"
+                  className="requestImg"
+                />
+                {`User: ${request.user.username}, Pet: ${
+                  request.pet ? request.pet.name : "Unknown Pet"
+                }, Status: ${request.status}`}
               </Link>
               <div className="button-group">
                 <button

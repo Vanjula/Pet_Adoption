@@ -7,7 +7,6 @@ import Vector from "../assets/Vector.svg";
 import dog_img from "../assets/Fish.png";
 import { BiRightArrowAlt, BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { FcLike } from "react-icons/fc";
-//new
 import ptImage from '../assets/pt.png';
 import caImage from '../assets/ca.png';
 
@@ -16,8 +15,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-
-// Adding icons for the pets
 import CatIcon from '../assets/cat.png';
 import HamsterIcon from '../assets/hamster.png';
 import DogIcon from '../assets/dog.png';

@@ -1,6 +1,6 @@
-// src/ResetPassword.js
 import React, { useState } from "react";
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL ;
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -10,7 +10,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/reset-password", {
+      await axios.post(`${apiUrl}/user/reset-password`, {
         newPassword,
         token,
       });
@@ -24,7 +24,7 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/user/verify-otp",
+        `${apiUrl}/user/verify-otp`,
         {
           OTP: otp,
           token,

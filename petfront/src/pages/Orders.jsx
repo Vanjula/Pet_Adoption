@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+const apiUrl = process.env.REACT_APP_API_URL;
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
@@ -7,13 +8,12 @@ const Orders = () => {
   const [editOrderId, setEditOrderId] = useState(null);
   const [editOrderData, setEditOrderData] = useState({ totalPrice: "" });
 
-  // Fetch orders on component mount
   useEffect(() => {
     fetchOrders();
   }, []);
 
   const fetchOrders = () => {
-    fetch("http://localhost:5000/order/all")
+    fetch(`${apiUrl}/order/all`)
       .then((response) => response.json())
       .then((data) => {
         if (data.orders) {
@@ -30,7 +30,7 @@ const Orders = () => {
 
   // const handleAddOrder = async () => {
   //   try {
-  //     const response = await fetch("http://localhost:5000/order/add", {
+  //     const response = await fetch(`${apiUrl}/order/add`, {
   //       method: "POST",
   //       headers: { "Content-Type": "application/json" },
   //       body: JSON.stringify(newOrder),
@@ -49,7 +49,7 @@ const Orders = () => {
 
   const handleEditOrder = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/order/edit/${id}`, {
+      const response = await fetch(`${apiUrl}/order/edit/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editOrderData),
@@ -73,7 +73,7 @@ const Orders = () => {
 
   const handleDeleteOrder = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/order/delete/${id}`, {
+      const response = await fetch(`${apiUrl}/order/delete/${id}`, {
         method: "DELETE",
       });
       const data = await response.json();
@@ -108,7 +108,6 @@ const Orders = () => {
         <button onClick={handleAddOrder}>Add Order</button>
       </div> */}
 
-      {/* Orders List */}
       <ul className="order-list">
         {orders.map((order) => (
           <li key={order._id} className="order-item">

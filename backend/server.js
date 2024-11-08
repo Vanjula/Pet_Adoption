@@ -29,6 +29,9 @@ app.use(session({
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public'))); 
 
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Routes
 const pages = require('./routes/pages');
 const pet = require('./routes/pet');

@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import AdoptionReuests from './pages/AdoptionReuests';
+import AdoptionRequests from './pages/AdoptionReuests';
 import DashboardContent from './pages/DashboardContent';
 import PetProducts from './pages/PetProducts';
 import PetProductsLimit from './pages/PetProductsLimit';
@@ -19,6 +19,8 @@ import Contact from './components/Client/Contact';
 import Category from './components/Client/Adoption';
 import Pet from './pages/pet';
 import AddPet from './pages/AddPet';
+import AddPetFood from './pages/AddPetFood';
+
 function App() {
   return (
     <Router>
@@ -26,14 +28,15 @@ function App() {
         <Routes>
           <Route path="/dashboard/*" element={<Dashboard />}>
             <Route path="" element={<DashboardContent />} />
-              <Route path="pet" element={<Pet/>} />
-            <Route path="addpet" element={<AddPet/>} />
-            <Route path="products" element={< PetProducts />} />
+            <Route path="pet" element={<Pet />} />
+            <Route path="pet/addpet" element={<AddPet />} />
+            <Route path="products" element={<PetProducts />} />
             <Route path="food" element={<PetFood />} />
             <Route path="product-limits" element={<PetProductsLimit />} />
-            <Route path='messages' element={<Message/>} />
-            <Route path="requests" element={<AdoptionReuests />} />
+            <Route path="messages" element={<Message />} />
+            <Route path="requests" element={<AdoptionRequests />} />
             <Route path="orders" element={<Orders />} />
+            <Route path="products/add-pet-food" element={<AddPetFood />} /> {/* Updated path */}
             {/* <Route path="reports" element={<Reports />} /> */}
           </Route>
 
@@ -45,7 +48,7 @@ function App() {
           <Route path="Shop" element={<Shop />} />
           <Route path="About" element={<About />} />
           <Route path="Contact" element={<Contact />} />
-                    <Route path="/Category" element={<Category />} />
+          <Route path="/Category" element={<Category />} />
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import dog_Img from "../components/assets/placeholder.png";
+import dog_Img from "../components/assets/placeholder.png"; 
+import { Link } from "react-router-dom";
+const apiUrl = process.env.REACT_APP_API_URL ;
 
 const Pet = () => {
   const [pets, setPets] = useState([]);
@@ -9,12 +11,11 @@ const Pet = () => {
     name: "",
     breed: "",
     age: "",
-    image: null, // For storing the selected image file
+    image: null,
   });
 
-  // Fetch all pets on component mount
   useEffect(() => {
-    fetch("http://localhost:5000/pet/all")
+    fetch(`${apiUrl}/pet/all`)
       .then((response) => response.json())
       .then((data) => {
         setPets(data.animals);
@@ -26,23 +27,20 @@ const Pet = () => {
       });
   }, []);
 
-  // Loading state
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Handle edit button click
   const handleEditClick = (pet) => {
     setEditingPetId(pet._id);
     setEditFormData({
       name: pet.name,
       breed: pet.breed,
       age: pet.age,
-      image: null,
+      image: null, 
     });
   };
 
-  // Handle form field change
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditFormData((prevData) => ({
@@ -51,18 +49,16 @@ const Pet = () => {
     }));
   };
 
-  // Handle image upload
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setEditFormData((prevData) => ({
         ...prevData,
-        image: file, // Save the uploaded file
+        image: file,
       }));
     }
   };
 
-  // Save edited data to the server
   const handleSaveEdit = async () => {
     const formData = new FormData();
     formData.append("name", editFormData.name);
@@ -73,13 +69,10 @@ const Pet = () => {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/pet/edit/${editingPetId}`,
-        {
-          method: "PUT",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${apiUrl}/pet/edit/${editingPetId}`, {
+        method: "PUT",
+        body: formData,
+      });
       const data = await response.json();
       if (response.ok) {
         console.log("Edit successful:", data);
@@ -88,7 +81,7 @@ const Pet = () => {
             pet._id === editingPetId ? { ...pet, ...editFormData } : pet
           )
         );
-        setEditingPetId(null); // Exit edit mode
+        setEditingPetId(null); 
       } else {
         console.error("Edit failed:", data.error);
       }
@@ -97,15 +90,13 @@ const Pet = () => {
     }
   };
 
-  // Cancel editing
   const handleCancelEdit = () => {
     setEditingPetId(null);
   };
 
-  // Delete pet from the server
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/pet/delete/${id}`, {
+      const response = await fetch(`${apiUrl}/pet/delete/${id}`, {
         method: "DELETE",
       });
       const data = await response.json();
@@ -160,11 +151,12 @@ const Pet = () => {
               <>
                 <h3>{pet.name}</h3>
                 <img
-                  src={pet.image?.url} // Ensure you are using the correct property of the image object
+                  src={pet.image ? `${apiUrl}/${pet.image}` : dog_Img}
                   alt={pet.name}
                   className="pet-image"
                   loading="lazy"
                 />
+
                 <p>Breed: {pet.breed}</p>
                 <p>Age: {pet.age} years</p>
 
@@ -186,6 +178,9 @@ const Pet = () => {
             )}
           </li>
         ))}
+        <div className="Adminpet">
+          <Link to="addpet">Add New Pet Food</Link>{" "}
+        </div>
       </ul>
     </div>
   );

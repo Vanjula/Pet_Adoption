@@ -8,6 +8,9 @@ import dog_img from "../assets/dog_img.png";
 import placeholder from "../assets/placeholder.png";
 import Footer from "./Footer";
 import Header from "./Header";
+
+const apiUrl = process.env.REACT_APP_API_URL ;
+
 const Adoption = () => {
   const [searchResults, setSearchResults] = useState([]);
 
@@ -15,7 +18,7 @@ const Adoption = () => {
   useEffect(() => {
     const fetchDefaultPets = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/pet/all");
+        const response = await axios.get(`${apiUrl}/pet/all`);
         setSearchResults(response.data.data || []);
       } catch (error) {
         console.error("Error fetching default pets:", error);
@@ -30,7 +33,7 @@ const Adoption = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/request/add",
+        `${apiUrl}/request/add`,
         { pet: petId },
         { headers: { Authorization: `${token}` } }
       );
@@ -77,7 +80,8 @@ const Adoption = () => {
               <h3 className="pet-name">
                 {pet.name} - {pet.breed}
               </h3>
-              <img src={placeholder} alt="" />
+              <img 
+                  src={`${apiUrl}/${pet.image}` } alt="" />
               <p className="pet-type">Type: {pet.type}</p>
               <p className="pet-area">Area: {pet.area}</p>
               <p className="pet-age">Age: {pet.age} months</p>

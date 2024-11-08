@@ -14,8 +14,9 @@ const petProductSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
-    min: 0 // Price should be a non-negative number
+    min: 0 
   },
+  image: { type: String },
   createdAt: {
     type: Date,
     default: Date.now

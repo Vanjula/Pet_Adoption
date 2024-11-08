@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 
-// Define the application schema
 const applicationSchema = new mongoose.Schema({
   fullName: {
     type: String,
-    required: true, // Ensure this field is required
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true, // Ensure email is unique
-    match: /.+\@.+\..+/ // Basic regex for validating email format
+    unique: true, 
+    match: /.+\@.+\..+/ 
   },
   phone: {
     type: String,
@@ -23,25 +22,24 @@ const applicationSchema = new mongoose.Schema({
   homeType: {
     type: String,
     required: true,
-    enum: ['apartment', 'house', 'farm'], // Restrict to specified values
+    enum: ['apartment', 'house', 'farm'], 
   },
   petType: {
     type: String,
     required: true,
-    enum: ['dog', 'cat', 'bird'], // Restrict to specified values
+    enum: ['dog', 'cat', 'bird'], 
   },
   experience: {
     type: String,
     required: true,
   },
+  image: { type: String },
   additionalInfo: {
     type: String,
-    default: '', // Default value if not provided
+    default: '', 
   },
 });
 
-// Create the Application model
 const Application = mongoose.model('Application', applicationSchema);
 
-// Export the Application model
 module.exports = Application;

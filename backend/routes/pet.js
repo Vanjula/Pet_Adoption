@@ -5,18 +5,15 @@ const User = require("../models/user.js");
 const mailer = require("../utils/mailer.js");
 const Animal = require("../models/pet.js");
 const multer = require("multer");
+const path = require('path');
+const fs = require('fs');
 
-// Set up multer for file upload
-const storage = multer.memoryStorage(); // Store file in memory as binary data
-const upload = multer({ storage: storage });
-
-// Add a new animal (with image)
-const addAnimal = async (animalData, imageBuffer) => {
+const addAnimal = async (animalData) => {
   try {
     const newAnimal = new Animal({
       ...animalData,
-      image: imageBuffer, // Save the image buffer as binary
-    });
+      image: animalData.imagePath,
+       });
     await newAnimal.save();
     return { success: true, message: 'Animal added successfully!', animal: newAnimal };
   } catch (error) {
@@ -24,6 +21,7 @@ const addAnimal = async (animalData, imageBuffer) => {
     return { success: false, message: 'Error adding animal', error };
   }
 };
+
 
 // Edit an existing animal
 const editAnimal = async (animalId, updates) => {
@@ -77,18 +75,33 @@ const getAnimal = async (id) => {
   }
 };
 
-// Routes
 
-// Add an animal
+const uploadDir = path.join(__dirname, '..', 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname)); // Use a unique name for each file
+  }
+});
+
+const upload = multer({ storage: storage });
+
 router.post('/add', upload.single('image'), async (req, res) => {
   const animalData = req.body; // Animal data from form
-  const imageBuffer = req.file ? req.file.buffer : null; // Image buffer from uploaded file
+  const relativeImagePath = req.file ? `uploads/${req.file.filename}` : null; // Store relative path
   
-  if (!imageBuffer) {
+  if (!relativeImagePath) {
     return res.status(400).json({ success: false, message: 'Image is required' });
   }
 
-  const result = await addAnimal(animalData, imageBuffer); // Pass the buffer along with other animal data
+  const result = await addAnimal({ ...animalData, imagePath: relativeImagePath }); // Pass the relative path
   res.status(result.success ? 201 : 400).json(result);
 });
 
@@ -186,5 +199,30 @@ router.post('/dash/content', async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+router.get('/countByBreed', async (req, res) => {
+  try {
+    // Aggregate pets by breed and count the number of pets per breed
+    console.log("Reached")
+    const petCountByBreed = await Animal.aggregate([
+      {
+        $group: {
+          _id: "$breed",  // Group by breed
+          count: { $sum: 1 },  // Count the number of pets in each group
+        }
+      },
+      {
+        $sort: { count: -1 }  // Sort the results by the count in descending order
+      }
+    ]);
+
+    // Return the result
+    res.status(200).json(petCountByBreed);
+  } catch (error) {
+    console.error("Error fetching pet count by breed:", error);
+    res.status(500).json({ message: "Error fetching pet count by breed", error });
+  }
+});
+
 
 module.exports = router;

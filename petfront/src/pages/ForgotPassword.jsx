@@ -1,23 +1,29 @@
-// src/ForgotPassword.js
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-
+import { useNavigate } from "react-router-dom";
+const apiUrl = process.env.REACT_APP_API_URL;
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/user/forgot-password",
-        { email }
-      );
+      const response = await axios.post(`${apiUrl}/user/forgot-password`, {
+        email,
+      });
       alert(`OTP sent to ${email}. Please check your inbox.`);
-      navigate("/reset-password"); // Navigate to reset-password route
+      navigate("/reset-password"); 
     } catch (error) {
-      alert(error.response.data.error);
+      if (error.response) {
+        alert(error.response.data.error || "An error occurred");
+      } else {
+        alert("Network error. Please try again later.");
+      }
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -29,11 +35,16 @@ const ForgotPassword = () => {
           className="forgot-password-input"
           type="email"
           placeholder="Email"
+          value={email} 
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button className="forgot-password-button" type="submit">
-          Send OTP
+        <button
+          className="forgot-password-button"
+          type="submit"
+          disabled={loading} 
+        >
+          {loading ? "Sending OTP..." : "Send OTP"} {/* Show loading text */}
         </button>
       </form>
     </div>

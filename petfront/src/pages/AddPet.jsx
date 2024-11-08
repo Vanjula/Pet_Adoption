@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const AddPet = () => {
   const [petData, setPetData] = useState({
     name: "",
@@ -7,6 +9,7 @@ const AddPet = () => {
     age: "",
     image: null,
   });
+
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -38,7 +41,7 @@ const AddPet = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/pet/add", {
+      const response = await fetch(`${apiUrl}/pet/add`, {
         method: "POST",
         body: formData,
       });
@@ -57,44 +60,68 @@ const AddPet = () => {
   };
 
   return (
-    <div className="AddPet">
-      <h1>Add a New Pet</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+    <div className="add-pet-container">
+      <h1 className="add-pet-heading">Add a New Pet</h1>
+      <form className="add-pet-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="form-label" htmlFor="name">
+            Name:
+          </label>
           <input
             type="text"
+            id="name"
             name="name"
             value={petData.name}
             onChange={handleInputChange}
+            className="form-input"
             required
           />
         </div>
-        <div>
-          <label>Breed:</label>
+
+        <div className="form-group">
+          <label className="form-label" htmlFor="breed">
+            Breed:
+          </label>
           <input
             type="text"
+            id="breed"
             name="breed"
             value={petData.breed}
             onChange={handleInputChange}
+            className="form-input"
             required
           />
         </div>
-        <div>
-          <label>Age:</label>
+
+        <div className="form-group">
+          <label className="form-label" htmlFor="age">
+            Age:
+          </label>
           <input
             type="number"
+            id="age"
             name="age"
             value={petData.age}
             onChange={handleInputChange}
+            className="form-input"
             required
           />
         </div>
-        <div>
-          <label>Pet Image:</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        <div className="form-group">
+          <label className="form-label" htmlFor="image">
+            Pet Image:
+          </label>
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="form-input"
+          />
         </div>
-        <button type="submit" disabled={loading}>
+
+        <button type="submit" className="submit-button" disabled={loading}>
           {loading ? "Adding Pet..." : "Add Pet"}
         </button>
       </form>

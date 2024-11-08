@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dog_food from "../components/assets/placeholder.png"; // Assuming the image path is correct
+import { Link } from "react-router-dom";
+const apiUrl = process.env.REACT_APP_API_URL ;
 
 const PetFood = () => {
   const [petsProducts, setPetsProducts] = useState([]);
@@ -12,7 +14,7 @@ const PetFood = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/PetFood/all")
+    fetch(`${apiUrl}/PetFood/all`)
       .then((response) => response.json())
       .then((data) => {
         setPetsProducts(data.PetFood);
@@ -44,7 +46,7 @@ const PetFood = () => {
   const handleSaveEdit = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/PetFood/edit/${editingProductId}`,
+        `${apiUrl}/PetFood/edit/${editingProductId}`,
         {
           method: "PUT",
           headers: {
@@ -63,7 +65,7 @@ const PetFood = () => {
               : product
           )
         );
-        setEditingProductId(null); // Exit edit mode
+        setEditingProductId(null); 
       } else {
         console.error("Edit failed:", data.error);
       }
@@ -74,12 +76,9 @@ const PetFood = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/PetFood/delete/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${apiUrl}/PetFood/delete/${id}`, {
+        method: "DELETE",
+      });
       const data = await response.json();
       if (response.ok) {
         console.log("Delete successful:", data);
@@ -131,7 +130,7 @@ const PetFood = () => {
             ) : (
               <>
                 <h3>{food.name}</h3>
-                <img src={dog_food} alt={food.name} />
+                <img src={`${apiUrl}${food.image}`} alt={food.name} />
                 <p>Quantity: {food.qty}</p>
                 <p>Price: ${food.price}</p>
                 <div className="pet-buttons">
@@ -152,6 +151,9 @@ const PetFood = () => {
             )}
           </li>
         ))}
+        <div className="Adminpet">
+          <Link to="add-pet-food">Add New Pet Food</Link>{" "}
+        </div>
       </ul>
     </div>
   );

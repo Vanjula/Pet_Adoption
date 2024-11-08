@@ -16,6 +16,10 @@ const petProductSchema = new mongoose.Schema({
     required: true,
     min: 0 
   },
+  image: { 
+    type: String, 
+    required: false // You can make this required if the image is mandatory
+  },
   createdAt: {
     type: Date,
     default: Date.now

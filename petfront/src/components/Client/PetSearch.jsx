@@ -1,6 +1,6 @@
-// PetSearch.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL ;
 
 const PetSearch = ({ onResults }) => {
   const [searchParams, setSearchParams] = useState({
@@ -10,7 +10,6 @@ const PetSearch = ({ onResults }) => {
     type: "",
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSearchParams((prev) => ({
@@ -19,11 +18,10 @@ const PetSearch = ({ onResults }) => {
     }));
   };
 
-  // Fetch search results when search parameters change
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/pet/search", {
+        const response = await axios.get(`${apiUrl}/pet/search`, {
           params: searchParams,
         });
         onResults(response.data.data);
@@ -31,9 +29,7 @@ const PetSearch = ({ onResults }) => {
         console.error("Error fetching search results:", error);
       }
     };
-
-    // Debounce the search request by waiting 300ms after the user stops typing
-    const delayDebounceFn = setTimeout(() => {
+  const delayDebounceFn = setTimeout(() => {
       fetchResults();
     }, 300);
 
