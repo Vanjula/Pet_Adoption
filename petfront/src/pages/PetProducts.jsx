@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import dog_food from "../components/assets/placeholder.png"; // Assuming the image path is correct
+import dog_food from "../components/assets/placeholder.png"; 
 import { Link } from "react-router-dom";
 const apiUrl = process.env.REACT_APP_API_URL ;
 

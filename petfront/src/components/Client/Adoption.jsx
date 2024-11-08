@@ -25,7 +25,6 @@ const Adoption = () => {
     fetchDefaultPets();
   }, []);
 
-  
   const handleShowInterest = async (petId) => {
     const token = localStorage.getItem("token");
 

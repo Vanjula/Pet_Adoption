@@ -21,8 +21,6 @@ const addAnimal = async (animalData) => {
     return { success: false, message: 'Error adding animal', error };
   }
 };
-
-
 // Edit an existing animal
 const editAnimal = async (animalId, updates) => {
   try {
@@ -51,7 +49,6 @@ const deleteAnimal = async (animalId) => {
   }
 };
 
-// Get all animals (with pagination)
 const getAllAnimals = async (limit = 10) => {
   try {
     const animals = await Animal.find().limit(limit);
@@ -113,21 +110,17 @@ router.put('/edit/:id', async (req, res) => {
   res.status(result.success ? 200 : 404).json(result);
 });
 
-// Delete an animal
 router.delete('/delete/:id', async (req, res) => {
   const animalId = req.params.id;
   const result = await deleteAnimal(animalId);
   res.status(result.success ? 200 : 404).json(result);
 });
-
-// Get an animal by ID
 router.get('/find/:id', async (req, res) => {
   const animalId = req.params.id;
   const result = await getAnimal(animalId);
   res.status(result.success ? 200 : 404).json(result);
 });
 
-// Get all animals
 router.get('/all', async (req, res) => {
   try {
     const animals = await Animal.find();
@@ -148,7 +141,7 @@ router.get('/all', async (req, res) => {
     res.status(500).json({ success: false, message: 'Error fetching animals' });
   }
 });
-
+  
 // Search animals based on query parameters
 router.get('/search', async (req, res) => {
   const { name, breed, area, type } = req.query;
@@ -168,7 +161,6 @@ router.get('/search', async (req, res) => {
   }
 });
 
-// Dashboard content analytics
 router.post('/dash/content', async (req, res) => {
   try {
     const breedAnalytics = await Animal.aggregate([

@@ -7,7 +7,6 @@ import { FaSearch } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-
 const Header = () => {
   return (
     <div className="ClientHeader">

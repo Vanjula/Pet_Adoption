@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import dog_food from "../components/assets/placeholder.png"; // Assuming the image path is correct
 import { Link } from "react-router-dom";
 
-const apiUrl = process.env.REACT_APP_API_URL; // Make sure this is correctly defined in your .env file
+const apiUrl = process.env.REACT_APP_API_URL; 
 
 const PetFood = () => {
   const [petsProducts, setPetsProducts] = useState([]);
@@ -26,13 +26,9 @@ const PetFood = () => {
   }
 
   const handleEdit = (id) => {
-    console.log("Edit product with ID:", id);
-    
   };
 
   const handleDelete = (id) => {
-    console.log("Delete product with ID:", id);
-    
   };
 
   return (
@@ -59,7 +55,6 @@ const PetFood = () => {
             </div>
           </li>
         ))}
-        
       </ul>
     </div>
   );

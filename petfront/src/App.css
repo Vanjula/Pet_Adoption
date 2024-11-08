@@ -663,18 +663,30 @@ a {
   grid-template-columns: repeat(auto-fill,minmax(20%,1fr));
   gap: 4rem;
   width: 100%;
-  height: 150px;
-}
-.cards {
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
-  text-align: center;
-  position: relative;
 }
 
-.cards p {
-  margin: 10px 0;
+.cards{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10% 10% 0% 0% ;
+  background-color: white;
+  gap: 1rem;
+  overflow: hidden;
+  height: auto;
+}
+
+.cards img{
+  height: 300px;
+}
+
+.cards div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .featuredProducts{
@@ -685,7 +697,6 @@ a {
   gap: 2rem;
   width: 100%;
 }
-
 .FeaturedProductCards{
     display: grid;
     padding: 0 5rem;
@@ -2183,7 +2194,7 @@ textarea {
 
 .stars {
   color: #FFD700;
-  font-size: 1.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
 }
 
@@ -2208,18 +2219,19 @@ textarea {
 .testimonial-img {
   position: relative;
   width: 250px; /* Increase the width */
-  height: 250px; /* Increase the height */
+  height: 2%;
 }
 
 .image-frame {
   background: linear-gradient(45deg, #FFA500, #FF6347); /* Gradient for the frame */
   padding: 10px; /* Reduce the padding to show a larger image */
-  border-radius: 50%;
+  border-radius: 70%;
 }
 
 .image-frame img {
   width: 100%;
-  height: 100%;
+
+  height: 130%;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -2264,44 +2276,39 @@ textarea {
   font-size: 1.2em;
   color: #555; /* Gray color for no requests message */
 }
-/* Request List Container */
+
+
 .request-list {
-  list-style-type: none;
-  padding: 0;
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto;
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove padding */
 }
 
-/* Request Item Styling */
 .request-item {
   display: flex;
-
-  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  padding: 15px 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px;
+  margin-bottom: 10px; /* Space between items */
+  background-color: #fff; /* White background for items */
+  transition: box-shadow 0.3s; /* Transition for hover effect */
 }
 
 .request-item:hover {
-  transform: scale(1.02);
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
 }
 
-/* Request Link Styling */
+.requestImg{
+  width: 200px;
+  height: 250px;
+}
 .request-link {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  flex-grow: 1;
-  margin-right: 15px;
-  transition: color 0.3s ease;
+  flex: 1; /* Allow the link to take up available space */
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove underline from link */
+  color: #007bff; 
 }
 
 .request-link img {
@@ -2311,23 +2318,19 @@ textarea {
   margin-right: 10px; /* Space between image and text */
 }
 
-/* Button Group */
 .button-group {
   display: flex; /* Flexbox for button layout */
   gap: 10px; /* Space between buttons */
 }
 
-/* Button Styles */
+
 .approve-button,
 .deny-button {
-  
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease, transform 0.1s ease;
+  padding: 8px 12px; /* Padding for buttons */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth background transition */
 }
 
 .approve-button {
@@ -2336,9 +2339,7 @@ textarea {
 }
 
 .approve-button:hover {
-
-  background-color: #218838;
-  transform: scale(1.05);
+  background-color: #218838; 
 }
 
 .deny-button {
@@ -2353,7 +2354,7 @@ textarea {
 
 
 /* .ByPet {
-=======
+
   background-color: #c82333;
   transform: scale(1.05);
 }
@@ -2829,7 +2830,7 @@ textarea {
 .pet-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color:  #49e2fd;
+  color: #ff5722;
   margin-bottom: 0.5rem;
 }
 
@@ -2857,7 +2858,7 @@ textarea {
 .show-interest-button {
   margin-top: 1.5rem;
   padding: 0.7rem 1.5rem;
-  background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);
+  background-color: #ff5722;
   color: #fff;
   border: none;
   border-radius: 50px;
@@ -2968,6 +2969,7 @@ textarea {
   justify-content: space-between;
   padding: 6rem 2rem;
 background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);  border-radius: 20px;
+
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -3149,4 +3151,130 @@ background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);  border-radius: 2
 .submit-button:disabled {
   background-color: #a5d6a7;
   cursor: not-allowed;
+}
+
+.About .AdoptionPage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  max-width: 1200px;
+  margin: auto;
+  background: linear-gradient(135deg, #7ed0ce, #ffcc99); /* Teal to light orange gradient */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: About-fadeIn 6s ease-in-out; /* Slow fade-in */
+}
+
+.About .AdoptionContent {
+  max-width: 500px;
+  animation: About-slideUp 3s ease-in-out; /* Slower slide-up animation */
+}
+
+.About .subtitle {
+  font-size: 30px;
+  color: #0c0b0b;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  animation: About-fadeIn 4s ease-in-out; /* Fade-in effect for subtitle */
+}
+
+.About .title {
+  font-size: 40px;
+  font-weight: bold;
+  color:rgb(218, 109, 36);
+  margin-bottom: 30px;
+  animation: About-slideDown 4s ease-in-out; /* Slow slide-down for title */
+}
+
+.About .description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2c1b1b;
+  margin-bottom: 30px;
+  animation: About-fadeIn 5s ease-in-out; /* Fade-in effect for description */
+}
+
+.About .buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.About .AdoptButton, 
+.About .DonateButton {
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.About .AdoptButton {
+  background-color: #e39516;
+  color: #fff;
+}
+
+.About .DonateButton {
+  background-color: #d18f38;
+  color: #ffffff;
+}
+
+.About .AdoptButton:hover,
+.About .DonateButton:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.About .PetImage {
+  flex-shrink: 90;
+  animation: About-slideInLeft 3s ease-in-out; /* Slow slide-in effect */
+}
+
+.About .PetImg {
+  width: 500px;
+  height: auto;
+  border-radius: 50px;
+}
+
+/* Animation Keyframes */
+@keyframes About-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes About-slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes About-slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes About-slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

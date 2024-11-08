@@ -28,7 +28,6 @@ router.get('/all', async (req, res) => {
   try {
     console.log("Fetching all pet products...");
     const petFoodData = await petFood.find({});
-    console.log(petFoodData);
     res.status(200).send({ message: 'Pet products fetched successfully!', PetFood: petFoodData });
   } catch (error) {
     console.error('Error fetching pet products:', error);
@@ -36,7 +35,6 @@ router.get('/all', async (req, res) => {
   }
 });
 
-// Search for pet food products by name
 router.get('/search', async (req, res) => {
   const { query } = req.query; 
   try {
@@ -50,7 +48,6 @@ router.get('/search', async (req, res) => {
   }
 });
 
-// Fetch best pet food products
 router.get('/best', async (req, res) => {
   try {
     const bestProducts = await petFood.find({ best: true });
@@ -61,7 +58,6 @@ router.get('/best', async (req, res) => {
   }
 });
 
-// Fetch featured pet food products
 router.get('/featured', async (req, res) => {
   try {
     const featuredProducts = await petFood.find({ featured: true });
@@ -72,7 +68,6 @@ router.get('/featured', async (req, res) => {
   }
 });
 
-// Edit a pet food product by ID
 router.put('/edit/:id', upload.single("image"), async (req, res) => {
   const { id } = req.params;
   const updateData = req.body;
@@ -96,7 +91,6 @@ router.put('/edit/:id', upload.single("image"), async (req, res) => {
   }
 });
 
-// Add a new pet food product with image upload
 router.post('/add', upload.single("image"), async (req, res) => {
   const productData = req.body;
 
@@ -114,7 +108,6 @@ router.post('/add', upload.single("image"), async (req, res) => {
   }
 });
 
-// Delete a pet food product by ID along with its image
 router.delete('/delete/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -126,7 +119,6 @@ router.delete('/delete/:id', async (req, res) => {
       return res.status(404).send({ error: "Product not found" });
     }
 
-    // Delete the image file if it exists
     if (deletedProduct.imagePath) {
       const imagePath = path.join(__dirname, '..', deletedProduct.imagePath);
       fs.unlink(imagePath, (err) => {

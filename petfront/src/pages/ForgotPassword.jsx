@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -45,6 +46,7 @@ const ForgotPassword = () => {
           disabled={loading} 
         >
           {loading ? "Sending OTP..." : "Send OTP"} {/* Show loading text */}
+
         </button>
       </form>
     </div>

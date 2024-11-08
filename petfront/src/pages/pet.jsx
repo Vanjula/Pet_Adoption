@@ -41,6 +41,11 @@ const Pet = () => {
     });
   };
 
+  // Handle edit button click
+  // const handleEditClick = (pet) => {
+  //   setEditingPetId(pet._id);
+  //   setEditFormData({ name: pet.name, breed: pet.breed, age: pet.age });
+  // };
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditFormData((prevData) => ({

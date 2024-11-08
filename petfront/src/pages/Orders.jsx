@@ -30,7 +30,6 @@ const Orders = () => {
 
   // const handleAddOrder = async () => {
   //   try {
-  //     const response = await fetch(`${apiUrl}/order/add`, {
   //       method: "POST",
   //       headers: { "Content-Type": "application/json" },
   //       body: JSON.stringify(newOrder),
@@ -107,7 +106,6 @@ const Orders = () => {
         />
         <button onClick={handleAddOrder}>Add Order</button>
       </div> */}
-
       <ul className="order-list">
         {orders.map((order) => (
           <li key={order._id} className="order-item">

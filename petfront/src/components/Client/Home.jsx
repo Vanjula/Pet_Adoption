@@ -1,64 +1,63 @@
 import React, { useEffect, useState } from "react";
-import Header from './Header';
-import Shape from '../assets/Shape.svg';
-import Bird from '../assets/bird.png';
-import Vector from '../assets/Vector.svg';
-import dog_img from '../assets/dog_img.png';
-import Purple from '../assets/purple.jpg';
-import dog_food from '../assets/dog_food.png';
-import Shape_Cat from '../assets/Shape.svg';
-import HeartPawn from'../assets/heartpawn.svg';
-import HeartDog from '../assets/heartDog.svg';
-import Pawn from '../assets/pawn.svg';
-import SugarDog from '../assets/sugarDog.svg';
-import Pentagon from '../assets/pentagon.svg';
-import Pbag from '../assets/pbag.png';
-import TPet from '../assets/pets.png';
-import Cat from '../assets/cat.png';
-import Health from '../assets/health.png';
-import Groom from '../assets/groom.png';
-import Train from '../assets/train.png';
-import Dhome from '../assets/home.png';
-import Tick from '../assets/tick.png';
-import Cbed from '../assets/cbed.png';
-import PN1 from '../assets/pn1.png';
-import PN2 from '../assets/pn2.png';
-import PN3 from '../assets/pn3.png';
-import Syrup from '../assets/syrup.png';
-import HamsterIcon from '../assets/hamster.png';
-import DogIcon from '../assets/dog.png';
-import Tfood from '../assets/turtlefood.png';
-import Wipe from '../assets/wipe.png';
-import ParrotIcon from '../assets/parrot.png';
-import RabbitIcon from '../assets/rabbit.png';
-import TurtleIcon from '../assets/turtle.png';
-import CombIcon from '../assets/comb.png';
-import SampIcon from '../assets/samp.png';
-import Food from '../assets/food.png';
-import RP from '../assets/rp.png';
+import Header from "./Header";
+import Shape from "../assets/Shape.svg";
+import Bird from "../assets/bird.png";
+import Vector from "../assets/Vector.svg";
+import dog_img from "../assets/dog_img.png";
+import Purple from "../assets/purple.jpg";
+import dog_food from "../assets/dog_food.png";
+import Shape_Cat from "../assets/Shape.svg";
+import HeartPawn from "../assets/heartpawn.svg";
+import HeartDog from "../assets/heartDog.svg";
+import Pawn from "../assets/pawn.svg";
+import SugarDog from "../assets/sugarDog.svg";
+import Pentagon from "../assets/pentagon.svg";
+import Pbag from "../assets/pbag.png";
+import TPet from "../assets/pets.png";
+import Cat from "../assets/cat.png";
+import Health from "../assets/health.png";
+import Groom from "../assets/groom.png";
+import Train from "../assets/train.png";
+import Dhome from "../assets/home.png";
+import Tick from "../assets/tick.png";
+import Cbed from "../assets/cbed.png";
+import PN1 from "../assets/pn1.png";
+import PN2 from "../assets/pn2.png";
+import PN3 from "../assets/pn3.png";
+import Syrup from "../assets/syrup.png";
+import HamsterIcon from "../assets/hamster.png";
+import DogIcon from "../assets/dog.png";
+import Tfood from "../assets/turtlefood.png";
+import Wipe from "../assets/wipe.png";
+import ParrotIcon from "../assets/parrot.png";
+import RabbitIcon from "../assets/rabbit.png";
+import TurtleIcon from "../assets/turtle.png";
+import CombIcon from "../assets/comb.png";
+import SampIcon from "../assets/samp.png";
+import Food from "../assets/food.png";
+import RP from "../assets/rp.png";
 import placeholder from "../assets/placeholder.png";
-import Footer from './Footer';
+import Footer from "./Footer";
 import Blue from "../assets/blue.jpeg";
 import { FcLike } from "react-icons/fc";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
 import { BiRightArrowAlt } from "react-icons/bi";
 
-
-const apiUrl = process.env.REACT_APP_API_URL ;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const token = localStorage.getItem("token"); 
+  const token = localStorage.getItem("token");
   const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -146,8 +145,8 @@ const Home = () => {
         throw new Error("Failed to add product");
       }
       const addedProduct = await response.json();
-      setBestProducts((prev) => [...prev, addedProduct.product]); 
-      setNewProduct({ name: "", price: "", image: "", featured: false }); 
+      setBestProducts((prev) => [...prev, addedProduct.product]);
+      setNewProduct({ name: "", price: "", image: "", featured: false });
     } catch (err) {
       setError(err.message);
     }
@@ -155,28 +154,25 @@ const Home = () => {
 
   const [animals, setAnimals] = useState([]);
 
- useEffect(() => {
-   const fetchAnimals = async () => {
-     try {
-       const response = await fetch(`${apiUrl}/pet/all`); 
-       if (!response.ok) {
-         throw new Error("Failed to fetch animals");
-       }
-       const data = await response.json();
-       console.log(data);
-       setAnimals(data.animals);
-     } catch (err) {
-       setError(err.message);
-     } finally {
-       setLoading(false);
-     }
-   };
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/pet/all`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch animals");
+        }
+        const data = await response.json();
+        console.log(data);
+        setAnimals(data.animals);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-   fetchAnimals();
- }, []);
-
-
- 
+    fetchAnimals();
+  }, []);
 
   const handleAdoptionRequest = async (petId) => {
     try {
@@ -249,14 +245,14 @@ const Home = () => {
         </div>
       </div>
       <div className="HomeCategories">
-        <div className="topContents">
+        {/* <div className="topContents">
           <p>Browse by category</p>
           <div>
             <BiLeftArrow className="customeIcon" />
             <BiRightArrow className="customeIcon" />
           </div>
         </div>
-       
+
         <div className="CategoryCards">
           <div className="cardsContainer">
             {categories.map((category) => {
@@ -276,7 +272,7 @@ const Home = () => {
               );
             })}
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="featuredProducts">
@@ -341,7 +337,7 @@ const Home = () => {
           </div>
         </div>
         <p>Best selling products</p>
-        
+
         <div className="best-products">
           <div className="featuredcard">
             <img src={dog_food} alt="" />
@@ -485,7 +481,7 @@ const Home = () => {
                 <div key={animal._id} className="card2">
                   {/* Ensure animal.image is a valid base64 string */}
                   {animal.image ? (
-                   <img src={`${apiUrl}/${animal.image}`} alt="lop"/>
+                    <img src={`${apiUrl}/${animal.image}`} alt="lop" />
                   ) : (
                     <p>No image available</p>
                   )}
