@@ -7,7 +7,11 @@ import { FaSearch } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+
 const Header = () => {
+  // Check if the token exists in localStorage
+  const token = localStorage.getItem("token");
+
   return (
     <div className="ClientHeader">
       <div className="topbar">
@@ -46,14 +50,7 @@ const Header = () => {
               Shop
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/About"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              About us
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               to="/Category"
@@ -70,14 +67,32 @@ const Header = () => {
               Contact us
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/About"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              About us
+            </NavLink>
+          </li>
         </ul>
         <div className="NavbarRight">
-          <form action="">
-            <input type="text" placeholder="Search ....." />
-            <FaSearch />
-          </form>
-          <FaHeart />
-          <FaShoppingCart />
+          {!token && (
+            <>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Register
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </div>

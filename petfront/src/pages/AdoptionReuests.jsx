@@ -2,28 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import placeholder from "../components/assets/placeholder.png";
 
-const apiUrl = process.env.REACT_APP_API_URL; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const AdoptionRequests = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [filter, setFilter] = useState("All"); // Add state for filter
+ const fetchRequests = async () => {
+   try {
+     const response = await fetch(`${apiUrl}/request/all`);
+     if (!response.ok) {
+       throw new Error("Failed to fetch adoption requests");
+     }
+     const data = await response.json();
+     setRequests(data);
+   } catch (err) {
+     setError(err.message);
+   } finally {
+     setLoading(false);
+   }
+ };
   useEffect(() => {
-    const fetchRequests = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/request/all`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch adoption requests");
-        }
-        const data = await response.json();
-        setRequests(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
 
     fetchRequests();
   }, []);
@@ -34,7 +36,9 @@ const AdoptionRequests = () => {
         method: "POST",
       });
       if (response.ok) {
-        setRequests((prev) => prev.filter((req) => req._id !== requestId));
+        toast.success("Approved");
+
+    fetchRequests();
       }
     } catch (err) {
       setError("Error approving request: " + err.message);
@@ -47,12 +51,20 @@ const AdoptionRequests = () => {
         method: "POST",
       });
       if (response.ok) {
-        setRequests((prev) => prev.filter((req) => req._id !== requestId));
+        toast.success("Denied")
+
+    fetchRequests();
       }
     } catch (err) {
       setError("Error denying request: " + err.message);
     }
   };
+
+  // Filter requests based on selected status
+  const filteredRequests =
+    filter === "All"
+      ? requests
+      : requests.filter((req) => req.status === filter);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -65,38 +77,70 @@ const AdoptionRequests = () => {
   return (
     <div className="adoption-requests">
       <h1 className="title">Adoption Requests</h1>
-      {requests.length === 0 ? (
+
+      {/* Filter Section */}
+      <div className="filter-options">
+        <label>Filter by Status: </label>
+        <select onChange={(e) => setFilter(e.target.value)} value={filter}>
+          <option value="All">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Denied">Denied</option>
+        </select>
+      </div>
+
+      {filteredRequests.length === 0 ? (
         <p className="no-requests">No adoption requests available.</p>
       ) : (
         <ul className="request-list">
-          {requests.map((request) => (
+          {filteredRequests.map((request) => (
             <li key={request._id} className="request-item">
-              <Link
-                to={`/adoption-request/${request._id}`}
-                className="request-link"
-              >
+              <div className="request-frame">
                 <img
-                  src={request.pet ? request.pet.imageUrl : placeholder}
+                  src={
+                    request.pet && request.pet.image
+                      ? `${apiUrl}/${request.pet.image}`
+                      : placeholder
+                  }
                   alt="Pet"
                   className="requestImg"
                 />
-                {`User: ${request.user.username}, Pet: ${
-                  request.pet ? request.pet.name : "Unknown Pet"
-                }, Status: ${request.status}`}
-              </Link>
-              <div className="button-group">
-                <button
-                  onClick={() => handleApprove(request._id)}
-                  className="approve-button"
-                >
-                  Approve
-                </button>
-                <button
-                  onClick={() => handleDeny(request._id)}
-                  className="deny-button"
-                >
-                  Deny
-                </button>
+                <div className="request-info">
+                  <strong>User: </strong>
+                  {request.user.username}
+                  <br />
+                  <strong>Email: </strong>
+                  {request.user.email}
+                  <br />
+                  <strong>Pet: </strong>
+                  {request.pet ? request.pet.name : "Unknown Pet"}
+                  <br />
+                  <strong>Breed: </strong>
+                  {request.pet ? request.pet.breed : "Unknown Breed"}
+                  <br />
+                  <strong>Age: </strong>
+                  {request.pet ? request.pet.age : "Unknown Age"}
+                  <br />
+                  <strong>Status: </strong>
+                  {request.status}
+                  <br />
+                  <strong>Created At: </strong>
+                  {new Date(request.createdAt).toLocaleString()}
+                </div>
+                <div className="button-group">
+                  <button
+                    onClick={() => handleApprove(request._id)}
+                    className="approve-button"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => handleDeny(request._id)}
+                    className="deny-button"
+                  >
+                    Deny
+                  </button>
+                </div>
               </div>
             </li>
           ))}

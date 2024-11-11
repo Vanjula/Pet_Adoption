@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 const apiUrl = process.env.REACT_APP_API_URL;
+
 const Message = () => {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [emailData, setEmailData] = useState({ to: "", subject: "", text: "" });
-  const [loading, setLoading] = useState(true); 
-  const [sending, setSending] = useState(false); 
-  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
+  const [filters, setFilters] = useState({ name: "", email: "", role: "" });
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -13,6 +16,7 @@ const Message = () => {
         const response = await fetch(`${apiUrl}/user/all`);
         const data = await response.json();
         setUsers(data.Users);
+        setFilteredUsers(data.Users); // Initially set the filtered users to all users
       } catch (error) {
         console.error("Error fetching users:", error);
         setError("Failed to fetch users.");
@@ -42,8 +46,8 @@ const Message = () => {
 
       const result = await response.json();
       if (response.ok) {
-        alert(result.message); 
-        setEmailData({ to: "", subject: "", text: "" }); 
+        alert(result.message);
+        setEmailData({ to: "", subject: "", text: "" });
       } else {
         setError(`Error: ${result.error}`);
       }
@@ -60,39 +64,74 @@ const Message = () => {
     setEmailData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => {
+      const updatedFilters = { ...prevFilters, [name]: value };
+      filterUsers(updatedFilters);
+      return updatedFilters;
+    });
+  };
+
+  const filterUsers = (filters) => {
+    let filtered = users;
+
+    if (filters.name) {
+      filtered = filtered.filter((user) =>
+        user.name.toLowerCase().includes(filters.name.toLowerCase())
+      );
+    }
+    if (filters.email) {
+      filtered = filtered.filter((user) =>
+        user.email.toLowerCase().includes(filters.email.toLowerCase())
+      );
+    }
+    if (filters.role) {
+      filtered = filtered.filter((user) =>
+        user.role.toLowerCase().includes(filters.role.toLowerCase())
+      );
+    }
+
+    setFilteredUsers(filtered);
+  };
+
   return (
-    <div>
-      <h1>User List</h1>
+    <div className="message-container">
+      <h1 className="message-title">User List</h1>
+
+      {/* Filter Section */}
+      
+
       {loading ? (
-        <p>Loading users...</p>
+        <p className="loading-text">Loading users...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error-message">{error}</p>
       ) : (
         <div className="user-cards">
-          {users.length > 0 ? (
-            users.map((user) => (
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user) => (
               <div className="user-card" key={user._id}>
-                <h3>{user.name}</h3>
-                <p>Email: {user.email}</p>
-                <p>Role: {user.role}</p>
+                <h3 className="user-name">{user.name}</h3>
+                <p className="user-email">Email: {user.email}</p>
                 <button
                   onClick={() => {
                     setEmailData({ ...emailData, to: user.email });
                   }}
+                  className="prepare-email-button"
                 >
                   Prepare Email
                 </button>
               </div>
             ))
           ) : (
-            <p>No users found.</p>
+            <p className="no-users-text">No users found.</p>
           )}
         </div>
       )}
 
-      <div className="email-form">
-        <h2>Send a Customized Email</h2>
-        {error && <p className="error-message">{error}</p>}
+      <div className="email-form-container">
+        <h2 className="email-form-title">Send a Customized Email</h2>
+        {error && <p className="email-error-message">{error}</p>}
         <input
           type="email"
           name="to"
@@ -100,6 +139,7 @@ const Message = () => {
           value={emailData.to}
           onChange={handleChange}
           disabled
+          className="email-input"
         />
         <input
           type="text"
@@ -108,6 +148,7 @@ const Message = () => {
           value={emailData.subject}
           onChange={handleChange}
           required
+          className="email-input"
         />
         <textarea
           name="text"
@@ -115,10 +156,12 @@ const Message = () => {
           value={emailData.text}
           onChange={handleChange}
           required
+          className="email-textarea"
         ></textarea>
         <button
           onClick={handleEmailSend}
           disabled={sending || !emailData.subject || !emailData.text}
+          className="send-email-button"
         >
           {sending ? "Sending..." : "Send Email"}
         </button>

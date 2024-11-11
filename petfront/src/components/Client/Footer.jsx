@@ -1,50 +1,54 @@
-import React from 'react'
+import React from "react";
 import Group from "../assets/Group.svg";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
+
 const Footer = () => {
   return (
-    <div className="Footer">
-      <div className="Portion1">
-        <div className="FooterTitle">
-          <img src={Group} alt="" className="iconpawns" />
-          <p>Pet Dabang</p>
+    <div className="footer">
+      <div className="footer-section portion1">
+        <div className="footer-title">
+          <img src={Group} alt="Pet Dabang Logo" className="icon-logo" />
+          <p className="brand-name">Pet Dabang</p>
         </div>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-          expedita. Corrupti laudantium itaque sunt dolore quas.{" "}
+        <p className="footer-description">
+          Your one-stop shop for all pet needs. We provide premium pet food,
+          accessories, and grooming services to keep your pets healthy and
+          happy.
         </p>
-        <div className="SocialLinks">
-          <FaFacebook className="social" />
-          <FaInstagram className="social" />
-          <FaTwitter className="social" />
-          <RiTwitterXFill className="social" />
+        <div className="social-links">
+          <FaFacebook className="social-icon" />
+          <FaInstagram className="social-icon" />
+          <FaTwitter className="social-icon" />
+          <RiTwitterXFill className="social-icon" />
         </div>
       </div>
-      <div className="second">
-        <li>Company </li>
-        <li>About Us</li>
-        <li>Blog</li>
-        <li>Gift Cards</li>
-        <li>Careers</li>
+      <div className="footer-section">
+        <h3>Company</h3>
+        <ul>
+          <li>About Us</li>
+          <li>Blog</li>
+          <li>Gift Cards</li>
+          <li>Careers</li>
+        </ul>
       </div>
-      <div className="second">
-        <li>Useful Links</li>
-        <li>New products</li>
-        <li>Best sellers</li>
-        <li>Discount</li>
-        <li>F.A.Q</li>
+      <div className="footer-section">
+        <h3>Useful Links</h3>
+        <ul>
+          <li>New Products</li>
+          <li>Best Sellers</li>
+          <li>Discount</li>
+          <li>F.A.Q</li>
+        </ul>
       </div>
-      <div className="second">
-        <li>Store</li> 
-        <li>8592 Fairground St. Tallahassee</li>
-        <li> FL 32303 +775 378-6348</li>
-        <li>rgarton@outlook.com</li>
+      <div className="footer-section">
+        <h3>Store</h3>
+        <p>8592 Fairground St. Tallahassee, FL 32303</p>
+        <p>+775 378-6348</p>
+        <p>contact@petdabang.com</p>
       </div>
     </div>
   );
-}
+};
 
-export default Footer
+export default Footer;

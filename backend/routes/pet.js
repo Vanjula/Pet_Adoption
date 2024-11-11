@@ -102,13 +102,31 @@ router.post('/add', upload.single('image'), async (req, res) => {
   res.status(result.success ? 201 : 400).json(result);
 });
 
-// Edit an existing animal
-router.put('/edit/:id', async (req, res) => {
+router.put('/edit/:id', upload.single('image'), async (req, res) => {
   const animalId = req.params.id;
   const updates = req.body;
-  const result = await editAnimal(animalId, updates);
-  res.status(result.success ? 200 : 404).json(result);
+  
+  // Handle image upload
+  const relativeImagePath = req.file ? `/uploads/${req.file.filename}` : null;
+  if (req.file) {
+    updates.image = relativeImagePath; // Save the relative path to the image field
+  }
+
+  try {
+    // Update animal record
+    const result = await editAnimal(animalId, updates);
+
+    if (result.success) {
+      return res.status(200).json(result);
+    } else {
+      return res.status(404).json(result);
+    }
+  } catch (error) {
+    console.error('Error updating animal:', error);
+    return res.status(500).json({ success: false, message: 'Error updating animal', error });
+  }
 });
+
 
 router.delete('/delete/:id', async (req, res) => {
   const animalId = req.params.id;

@@ -6,24 +6,25 @@ const Pet = require('../models/pet.js');
 const User = require('../models/user.js'); // Assuming you have a User model defined
 const authenticateToken = require('../utils/AuthDecode.js');
 const mailer = require("../utils/mailer.js");
-
 // Get all adoption requests
 router.get('/all', async (req, res) => {
   try {
     const requests = await AdoptionRequest.find({})
-      .populate('user', 'username') // Populate user with specific fields (like email)
+      .populate('user', 'username email') // Populate user with fields (like email, username)
       .populate({
         path: 'pet', // Populate the pet details
         model: Pet,  // Specify the model if needed
-        select: 'name breed age' // Specify which fields you want to retrieve from Pet
+        select: 'name sex adoptable_from breed age image' // Specify which fields to retrieve from Pet
       });
-
+    console.log(requests);
+    // Send the populated data
     res.status(200).send(requests);
   } catch (error) {
     console.error('Error fetching adoption requests:', error);
     res.status(500).send({ error: 'Failed to fetch adoption requests', details: error.message });
   }
 });
+
 
 // Create a new adoption request
 router.post('/add', authenticateToken, async (req, res) => {
@@ -41,7 +42,7 @@ router.post('/add', authenticateToken, async (req, res) => {
 });
 
 // Approve an adoption request by ID
-router.post('/approve/:id',authenticateToken ,async (req, res) => {
+router.post('/approve/:id' ,async (req, res) => {
   const { id } = req.params;
   try {
     const updatedRequest = await AdoptionRequest.findByIdAndUpdate(id, { status: 'Approved' }, { new: true });

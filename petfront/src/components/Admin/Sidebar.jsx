@@ -1,14 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { MdLeaderboard } from "react-icons/md";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import {
+  MdLeaderboard,
+  MdOutlineSpaceDashboard,
+  MdOutlinePets,
+  MdOutlineProductionQuantityLimits,
+} from "react-icons/md";
 import { GiCarrier } from "react-icons/gi";
-import { MdOutlinePets } from "react-icons/md";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { FaRegMessage } from "react-icons/fa6";
 import { IoSettings } from "react-icons/io5";
 import { PiSignOut } from "react-icons/pi";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import Dummy from "../assets/dummy logo.svg";
 
 function Sidebar() {
@@ -20,52 +22,66 @@ function Sidebar() {
       </div>
       <ul>
         <li>
-          <NavLink to="/dashboard" activeClassName="active">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <MdOutlineSpaceDashboard /> <p>Dashboard</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/requests" activeClassName="active">
+          <NavLink
+            to="/dashboard/requests"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <MdLeaderboard /> <p>Adoption Requests</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/orders" activeClassName="active">
+          <NavLink
+            to="/dashboard/orders"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <GiCarrier /> <p>Orders</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/products" activeClassName="active">
+          <NavLink
+            to="/dashboard/products"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <MdOutlinePets /> <p>Pet Products</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/pet" activeClassName="active">
+          <NavLink
+            to="/dashboard/pet"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <MdOutlinePets /> <p>Pet</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/product-limits" activeClassName="active">
+          <NavLink
+            to="/dashboard/product-limits"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <MdOutlineProductionQuantityLimits /> <p>Pet Product Limits</p>
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/dashboard/sales-report" activeClassName="active">
-            <BsGraphUpArrow /> <p>Sales Report</p>
-          </NavLink>
-        </li> */}
         <li>
-          <NavLink to="/dashboard/messages" activeClassName="active">
+          <NavLink
+            to="/dashboard/messages"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <FaRegMessage /> <p>Messages</p>
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/dashboard/food" activeClassName="active">
-            <IoSettings /> <p>Pet Food</p>
-          </NavLink>
-        </li> */}
         <li>
-          <NavLink to="/dashboard/sign-out" activeClassName="active">
+          <NavLink
+            to="/dashboard/sign-out"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <PiSignOut /> <p>Sign Out</p>
           </NavLink>
         </li>
@@ -77,7 +93,7 @@ function Sidebar() {
         <h4>Dabang Pro</h4>
         <div className="SiderTexts">
           <p>Get access to all</p>
-          <p>feaures on tetumbas</p>
+          <p>features on tetumbas</p>
         </div>
         <button>Get Pro</button>
       </div>

@@ -2,25 +2,38 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Order = require("../models/order.js");
-
+const authenticateToken = require('../utils/AuthDecode.js');
 // Get all orders
-router.get("/all", async (req, res) => {
-  try {
-    const orderData = await Order.find({});
-    res.status(200).send({ message: "Orders sent successfully!", orders: orderData });
-  } catch (error) {
-    console.error("Error fetching orders:", error);
-    res.status(500).send({ error: "Failed to send order data" });
-  }
-});
 
-// Add a new order
-router.post("/add", async (req, res) => {
+
+
+
+router.get('/all',async(req,res)=>{
+  const newOrder = await Order({});
+  console.log(newOrder);
+    res.status(201).send({
+      message: "Order added successfully!",
+      orders: newOrder,
+    });
+})
+router.post("/add", authenticateToken, async (req, res) => {
   try {
-    const orderData = req.body;
-    const newOrder = new Order(orderData);
+    const { orderData } = req.body;
+
+    const userId = req.userId;
+
+    const newOrder = new Order({
+      user: userId, // Set user ID from authenticated user
+      products: orderData, // Add the products data
+         });
+
+    // Save the order to the database
     await newOrder.save();
-    res.status(201).send({ message: "Order added successfully!", order: newOrder });
+
+    res.status(201).send({
+      message: "Order added successfully!",
+      order: newOrder,
+    });
   } catch (error) {
     console.error("Error adding order:", error);
     res.status(400).send({ error: "Failed to add order" });

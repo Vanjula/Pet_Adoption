@@ -18,6 +18,7 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// Enable CORS
 app.use(cors());
 app.use(session({
   secret: 'your_secret_key', 
@@ -35,7 +36,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const pages = require('./routes/pages');
 const pet = require('./routes/pet');
 const userRoutes = require('./routes/user');
-const PetProducts = require('./routes/PetFood');
+const Productroute = require('./routes/petproducts');
 const Order = require('./routes/Order');
 const request = require('./routes/AdoptReq');
 const cat= require('./routes/category');
@@ -45,8 +46,28 @@ app.use('/cat',cat);
 app.use('/pet',pet);
 app.use('/user', userRoutes);
 app.use('/order',Order);
-app.use('/PetFood',PetProducts);
 app.use('/request',request);
+app.use('/PetFood',Productroute);
+const Products= require('./models/PetProducts');
+app.get("/product-quantities", async (req, res) => {
+  try {
+    console.log("Fetching pet products quantity...");
+    const petFoodData = await Products.find({});
+    
+    const quantityData = petFoodData.map(product => ({
+      name: product.name,
+      quantity: product.qty
+    }));
+
+    res.status(200).send({ message: 'Pet products quantity fetched successfully!', quantities: quantityData });
+  } catch (error) {
+    console.error('Error fetching pet products quantity:', error);
+    res.status(500).send({ error: 'Failed to fetch pet products quantity' });
+  }
+});
+
+
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {

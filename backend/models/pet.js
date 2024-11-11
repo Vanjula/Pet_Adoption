@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the schema for the pet data
 const petSchema = new mongoose.Schema({
-  ID: {
-    type: Number, 
-  },
+ 
   name: {
     type: String,
     
@@ -37,6 +35,9 @@ const petSchema = new mongoose.Schema({
   coat: {
     type: String,
   },
+  type: {
+    type: String,
+  },
   size: {
     type: String,
   },
@@ -44,7 +45,8 @@ const petSchema = new mongoose.Schema({
   neutered: {
     type: String,
     enum: ['yes', 'no'],
-  }
+  },
+ 
 });
 
 // Create the model from the schema
