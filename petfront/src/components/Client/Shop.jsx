@@ -17,7 +17,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 const apiUrl = process.env.REACT_APP_API_URL;
+
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,14 +30,14 @@ const Shop = () => {
   const [filterPrice, setFilterPrice] = useState([9, 399]);
   const [activePet, setActivePet] = useState("");
 
-  // Fetch products on component mount
+  // Load products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(`${apiUrl}/PetFood/all`);
         const data = await response.json();
         if (response.ok) {
-          setProducts(data.petProducts); // Assuming data.petProducts matches your API response
+          setProducts(data.petProducts); // Adjust to match API response
         } else {
           setError("Failed to fetch products.");
         }
@@ -49,6 +51,7 @@ const Shop = () => {
     fetchProducts();
   }, []);
 
+  // Change page
   const handlePageChange = (direction) => {
     if (
       direction === "next" &&
@@ -60,6 +63,7 @@ const Shop = () => {
     }
   };
 
+  // Filtered products by category and price
   const filteredProducts = products
     .filter((product) =>
       filterCategory ? product.category === filterCategory : true
@@ -69,31 +73,52 @@ const Shop = () => {
         product.price >= filterPrice[0] && product.price <= filterPrice[1]
     );
 
+  // Pagination
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = filteredProducts.slice(
     startIndex,
     startIndex + itemsPerPage
   );
 
+  // Handle category change
   const handlePetChange = (pet) => {
     setActivePet(pet);
     setFilterCategory(pet);
   };
-  
+
+  // Add product to cart using localStorage
+  const handleCartNow = (product) => {
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    const existingProductIndex = cart.findIndex(
+      (item) => item._id === product._id
+    );
+
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+    alert(`${product.name} added to cart!`);
+  };
+
+  // Buy Now functionality - creates order
   const handleBuyNow = async (product) => {
     const token = localStorage.getItem("token");
     const orderData = {
       productId: product._id,
       name: product.name,
       price: product.price,
-      quantity: 1, // Assuming a single item for now
+      quantity: 1,
     };
 
     try {
       const response = await fetch(`${apiUrl}/order/add`, {
         method: "POST",
         headers: {
-          Authorization: `${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
@@ -110,7 +135,8 @@ const Shop = () => {
       alert("Failed to place order.");
     }
   };
-  var ip=0;
+
+  var ip = 0;
 
   return (
     <div>
@@ -150,17 +176,24 @@ const Shop = () => {
         <div className="products">
           {currentProducts.map((product) => (
             <div className="product-card" key={ip++}>
-              <img src={product.image || PetIcon} alt={product.name} />
+              <img src={`${apiUrl}${product.image}`} alt={product.name} />
               <h4>{product.name}</h4>
               <p>{product.description}</p>
-              <span>{product.price}</span>
-              <button className="cart-now-btn">Add to Cart</button>
-              <button
-                className="buy-now-btn"
-                onClick={() => handleBuyNow(product)} // Triggering the order creation on "Buy Now"
-              >
-                Buy Now
-              </button>
+              <span>Price: {product.price}</span>
+              <div className="buttonscarts">
+                <button
+                  className="buy-now-btn"
+                  onClick={() => handleCartNow(product)} // Triggering the order creation on "Buy Now"
+                >
+                  Add to Cart{" "}
+                </button>
+                <button
+                  className="buy-now-btn"
+                  onClick={() => handleBuyNow(product)} // Triggering the order creation on "Buy Now"
+                >
+                  Buy Now
+                </button>
+              </div>
             </div>
           ))}
         </div>

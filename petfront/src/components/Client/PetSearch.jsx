@@ -43,7 +43,7 @@ const PetSearch = ({ onResults }) => {
         <input
           type="text"
           name="name"
-          placeholder="Pet ID"
+          placeholder="Pet name"
           value={searchParams.name}
           onChange={handleChange}
         />
@@ -54,13 +54,7 @@ const PetSearch = ({ onResults }) => {
           value={searchParams.breed}
           onChange={handleChange}
         />
-        <input
-          type="text"
-          name="area"
-          placeholder="Area"
-          value={searchParams.area}
-          onChange={handleChange}
-        />
+
         <input
           type="text"
           name="type"

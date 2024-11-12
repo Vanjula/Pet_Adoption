@@ -126,7 +126,7 @@ const Adoption = () => {
                 {pet.name} - {pet.breed}
               </h3>
               {pet.image ? (
-                <img src={`${apiUrl}/${pet.image}`} alt={pet.name} />
+                <img src={`${apiUrl}${pet.image}`} alt={pet.name} />
               ) : (
                 <p>No image available</p>
               )}

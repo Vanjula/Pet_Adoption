@@ -20,6 +20,7 @@ import Pet from './pages/pet';
 import AddPet from './pages/AddPet';
 import AddPetFood from './pages/AddPetFood';
 import EditPetProduct from './pages/EditProduct';
+import Cart from './components/Client/Cart';
 function App() {
   return (
     <Router>
@@ -44,7 +45,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="Shop" element={<Shop />} />
+          <Route path="/Shop" element={<Shop />} />
+           <Route path="/cart" element={<Cart />} />
           <Route path="About" element={<About />} />
           <Route path="Contact" element={<Contact />} />
           <Route path="/Category" element={<Category />} />

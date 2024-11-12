@@ -254,8 +254,20 @@ const Pet = () => {
                   {new Date(pet.adoptable_from).toLocaleDateString()}
                 </p>
                 <p>Posted: {new Date(pet.posted).toLocaleDateString()}</p>
-                <button onClick={() => handleEditClick(pet)}>Edit</button>
-                <button onClick={() => handleDelete(pet._id)}>Delete</button>
+                <div className="pet-item-buttons">
+                  <button
+                    onClick={() => handleEditClick(pet)}
+                    className="edit-btn"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(pet._id)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
               </>
             )}
           </li>

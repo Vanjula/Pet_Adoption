@@ -146,10 +146,10 @@ const Home = () => {
                 <div className="NameAndLike">
                   <div>
                     <div>{product.name}</div>
-                    <p>{product.price}</p>
+                    <p>Price: {product.price}</p>
                   </div>
                   <FcLike className="like" />
-                  <button className="buyButton">💸 Buy</button>
+                  {/* <button className="buyButton">💸 Buy</button> */}
                 </div>
               </div>
             );
