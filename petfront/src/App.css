@@ -369,125 +369,111 @@ a {
 } */
 
 /* ========================================   Client ============================== */
-
+/* General Header styling */
 .ClientHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
   width: 100%;
-  padding: 1rem;
+  background-color: #f8f9fa;
 }
 
+/* Topbar styling */
 .topbar {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 0.5rem 0;
-}
-
-.topbar .phoneandemail {
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 2rem;
-}
-
-.topbar .phoneandemail div {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   font-size: 0.9rem;
+  background-color: #e9ecef;
 }
 
+.phoneandemail div,
 .address {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.Navbar{
+/* Navbar styling */
+.Navbar {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
-  width: 80%;
-  margin-inline: auto;
-  z-index: 100;
-  background-color: white;
-  padding: 1rem 2rem;
-  border-radius: .8rem;
-  box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
+  padding: 0.5rem 1rem;
+  position: relative;
 }
 
-.Navbar div,ul  {
+/* Logo */
+.Navbar img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
+/* Menu icon (for mobile) */
+.menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Navigation links */
+.Navbar ul {
   display: flex;
-  flex-direction: row;
-  list-style: none;
-  font-size: 18px;
+  list-style-type: none;
+  gap: 1.5rem;
 }
 
-.Navbar div{
-  font-weight: 700;
-    gap: 1rem;
-
-}
-
-.Navbar ul{
-  gap: 2rem;
-}
-
-.Navbar ul li a{
+.Navbar ul li a {
   text-decoration: none;
-    border-bottom: solid transparent .2rem;
-    border-radius: 6px;
-  color: black;
-  transition: 0.5s ease;
+  color: #333;
+  font-weight: 500;
 }
-.Navbar ul li a:hover{
-  color: #FD7E14;
-  border-color: #FD7E14;
+
+.Navbar ul.show {
+  display: flex;
 }
+
+/* Right-side Navbar (Login/Register links) */
 .NavbarRight {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 15px;
+  gap: 1rem;
 }
 
-.NavbarRight button {
-  padding: 10px 20px;
-  border: 2px solid  #c27405; /* Border color can be customized */
-  border-radius: 5px;
-  background-color: transparent;
-  color:  #c27405; /* Matching color for the border */
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Responsive styling */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block; /* Show the menu icon on smaller screens */
+  }
+
+  /* Hide Navbar links by default on mobile */
+  .Navbar ul {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position just below the Navbar */
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  /* Show the menu when toggled */
+  .Navbar ul.show {
+    display: flex;
+  }
+
+  /* Style each menu item in the dropdown */
+  .Navbar ul li {
+    padding: 0.5rem 0;
+  }
+
+  /* Hide the right-side Navbar links on mobile */
+  .NavbarRight {
+    display: none;
+  }
 }
 
-.NavbarRight button:hover {
-  background-color:  #c27405; /* Background color on hover */
-  color: white; /* Text color changes on hover */
-}
-
-.NavbarRight button:focus {
-  outline: none; /* Remove focus outline for better appearance */
-  box-shadow: 0 0 5px  #c27405; /* Subtle glow effect on focus */
-}
-
-.NavbarRight button:active {
-  transform: scale(0.98); /* Slightly shrink the button when clicked */
-}
-
+/* --------------------------------------------------------------------------------------------------------- home --------------------------------------------------------------------- */
 
 .Home {
   display: flex;
@@ -608,56 +594,200 @@ a {
   background-color: #c27405;
   transform: scale(1.1);
 }
-
-.featuredProducts {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.best-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.5rem;
-  width: 100%;
-  padding: 1.5rem 0;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.FeaturedProductCards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-  width: 100%;
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .HomeBody {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+  
+  .Homeleft, .HomeRight {
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  .BackGroundShape, .BackGroundShape2 {
+    display: none;
+  }
+  
+  .HomeContents {
+    padding-left: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .HomeContents_h {
+    font-size: 1.2rem;
+  }
+  
+  .p_color {
+    font-size: 1.8rem;
+  }
+  
+  .DogImg {
+    width: 80%;
+    max-height: 300px;
+    display: none;
+  }
+
+  .Adopt-btn {
+    font-size: 0.9rem;
+  }
+  
+  .FeaturedProductCards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .HomeBody {
+    padding: 1rem;
+  }
+  
+   .HomeRight {
+    padding: 1rem 0;
+  }
+  .Homeleft{
+    display: none;
+  }
+  .HomeContents {
+    padding-left: 1rem;
+  }
+  
+  .p_color {
+    font-size: 1.5rem;
+  }
+  .BackGroundShape, .BackGroundShape2 {
+    display: none;
+  }
+  
+
+  .DogImg {
+    width: 100%;
+    max-height: 200px;
+    display: none;
+  }
+  
+  .FeaturedProductCards {
+    grid-template-columns: 1fr;
+    padding: 1rem 0;
+  }
+  
+  .featuredcard {
+    width: 100%;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .featuredcard {
   border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 8px;
-  width: 200px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.featuredcard:hover {
+  transform: scale(1.05);
 }
 
 .featuredcard img {
   width: 100%;
+  max-width: 200px;
   height: auto;
   border-radius: 5px;
+  object-fit: cover;
 }
 
-.NameAndLike, .actions {
+.NameAndLike {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
+  width: 100%;
+  padding-top: 0.5rem;
 }
 
-.like-button, .favorite-button, .cart-button, .buy-button {
+.NameAndLike div {
+  text-align: left;
+}
+
+.like {
+  font-size: 1.5rem;
+  color: #ff6961;
   cursor: pointer;
-  background: #f0f0f0;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 8px;
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .title {
+    font-size: 1.4rem;
+  }
+  
+  .featuredcard img {
+    max-width: 180px;
+  }
+}
 
+@media (max-width: 768px) {
+  .best-products {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .featuredcard {
+    padding: 0.8rem;
+  }
+
+  .NameAndLike {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .best-products {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .featuredcard {
+    padding: 0.5rem;
+  }
+
+  .featuredcard img {
+    max-width: 100px;
+  }
+
+  .like {
+    font-size: 1.2rem;
+  }
+}
 
 .CatImgContainer {
   display: grid;
@@ -1003,29 +1133,6 @@ a {
 }
 
 
-.BestProducts{
-   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5rem;
-  padding: 4rem 4rem;
-  width: 100%;
-}
-
-
-
-.BestProducts p{
-  font-size: 39px;
-  font-weight: 800;
-}
-
-.best-products{
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(10%,1fr));
-  gap: 2rem;
-  width: 90%;
-  height: 100%;
-}
 
  /* ========================= Bypet ======================== */.ByPet {
   display: flex;
@@ -2453,8 +2560,7 @@ a {
   .card p {
     font-size: 16px;
   }
-}
-.shop-container {
+}.shop-container {
   max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
@@ -2483,15 +2589,17 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
 }
 
 .product-card {
-  width: 250px;
-  margin: 20px;
+  width: 100%;
+  max-width: 250px;
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  text-align: center;
 }
 
 .product-card img {
@@ -2512,6 +2620,13 @@ a {
   color: #666;
 }
 
+.product-card .buttonscarts {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .product-card button {
   background-color: #4CAF50;
   color: #fff;
@@ -2519,6 +2634,7 @@ a {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .product-card button:hover {
@@ -2537,17 +2653,66 @@ a {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  margin: 0 5px;
 }
 
 .pagination button:hover {
   background-color: #3e8e41;
 }
 
-.pagination p {
+.pagination span {
   font-size: 16px;
   color: #666;
   margin: 0 10px;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .shop-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .shop-header h1 {
+    font-size: 20px;
+  }
+
+  .shop-products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 100%; /* Full-width on smaller screens */
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-header h1 {
+    font-size: 18px;
+  }
+
+  .product-card h2 {
+    font-size: 16px;
+  }
+
+  .product-card p {
+    font-size: 13px;
+  }
+
+  .product-card button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .pagination button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
 /* Main container */
 .shop-by-pet {
   text-align: center;
@@ -3715,13 +3880,12 @@ textarea {
 .otp-button:focus,
 .password-button:focus {
   outline: none;
-}
-
-/* Overall container for adoption page */
+}/* Overall container for adoption page */
 .adoption-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 20px;
 }
 
 /* Hero Section (Text and Background Images) */
@@ -3732,6 +3896,7 @@ textarea {
   width: 100%;
   padding: 40px;
   background-color: #f7f7f7;
+  position: relative;
 }
 
 .hero-text {
@@ -3766,6 +3931,34 @@ textarea {
   right: 10%;
 }
 
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-text button {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+
+  .hero-section img {
+    width: 200px;
+    position: relative;
+    margin-top: 20px;
+  }
+}
+
 /* Title for Adoption Section */
 .adoption-title {
   font-size: 2rem;
@@ -3785,7 +3978,7 @@ textarea {
 /* Pet Results Section */
 .pet-results {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust grid layout */
   gap: 20px;
   width: 100%;
   justify-content: center;
@@ -3815,13 +4008,6 @@ textarea {
   margin: 5px 0;
 }
 
-.buttonscarts{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap:1rem;
-  width: 100%;
-}
 .show-interest-button {
   background-color: #ff6600;
   color: white;
@@ -3890,6 +4076,29 @@ textarea {
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .post-pet-form-container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .post-pet-form-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .post-pet-form-container input,
+  .post-pet-form-container button {
+    font-size: 1rem;
+  }
+
+  .add-pet-button {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+
 }
 
 
@@ -4079,6 +4288,82 @@ textarea {
   font-style: italic;
 }
 
+/* Contact Page */
+.ContactSection {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.ContactForm {
+  width: 50%;
+  padding: 20px;
+}
+
+.ContactForm h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.SendMessageBtn {
+  padding: 10px 20px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ContactInfo {
+  width: 40%;
+  padding: 20px;
+}
+
+.ContactInfo p {
+  margin-bottom: 20px;
+}
+
+.ContactDetails div {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.ContactDetails i {
+  margin-right: 10px;
+  color: #ff6600;
+}
+
+.MapSection {
+  margin: 50px 0;
+}
+
+.MapSection iframe {
+  width: 100%;
+  border-radius: 8px;
+}
+
 /* Vallin Section */
 .vallin-section {
   display: flex;
@@ -4092,7 +4377,6 @@ textarea {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-/* Vallin Left Content */
 .vallin-left {
   max-width: 50%;
   position: relative;
@@ -4124,7 +4408,6 @@ textarea {
   width: 250px;
 }
 
-/* Vallin Content */
 .brand-title {
   font-size: 2rem;
   font-weight: bold;
@@ -4146,65 +4429,12 @@ textarea {
   margin-bottom: 1.5rem;
 }
 
-/* Call-to-Action Button */
-.cta-button {
-  padding: 1rem 2.5rem; /* Adjusted padding for a better button size */
-  font-size: 1.2rem; /* Slightly larger font for the button */
-  font-weight: 600;
-  background-color: #ff6f61; /* Updated button color */
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
-}
-
-.cta-button:hover {
-  background-color: #e55a4c; /* Darker shade on hover */
-  transform: translateY(-2px); /* Lift effect on hover */
-}
-/* Vallin Section */
-.vallin-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6rem 2rem;
-background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);  border-radius: 20px;
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Vallin Left Content */
-.vallin-left {
-  max-width: 50%;
-  padding: 2rem;
-  color: #fff; /* White text for contrast */
-}
-
-.brand-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.vallin-header .vallin-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.vallin-header .vallin-description {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
 .cta-button {
   padding: 1rem 2.5rem;
   font-size: 1.2rem;
   font-weight: 600;
-  background-color: #fff; /* Button background */
-  color: #ff7e5f; /* Text color matching the theme */
+  background-color: #ff6f61; /* Updated button color */
+  color: #fff;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -4212,16 +4442,124 @@ background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);  border-radius: 2
 }
 
 .cta-button:hover {
-  background-color: #ffcccb; /* Light pink on hover */
+  background-color: #e55a4c; /* Darker shade on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.vallin-section {
+  background: linear-gradient(135deg, #ffd194 0%, #70e1f5 100%);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.vallin-left {
+  max-width: 50%;
+  padding: 2rem;
+  color: #fff;
+}
+
+.cta-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #fff;
+  color: #ff7e5f;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #ffcccb;
   transform: translateY(-2px);
 }
 
 .vallin-right {
   max-width: 50%;
   padding: 2rem;
-  color: #fff; /* White text for consistency */
-  text-align: center; /* Centered text for better layout */
+  color: #fff;
+  text-align: center;
 }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .ContactSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ContactForm, .ContactInfo {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .vallin-section {
+    flex-direction: column;
+    padding: 4rem 1rem; /* Reduce padding on smaller screens */
+  }
+
+  .vallin-left, .vallin-right {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .ContactSection {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .ContactForm, .ContactInfo {
+    width: 100%;
+  }
+
+  .SendMessageBtn {
+    width: 100%;
+  }
+
+  .MapSection iframe {
+    height: 300px;
+  }
+
+  .vallin-section {
+    padding: 3rem 1rem;
+  }
+
+  .vallin-left, .vallin-right {
+    max-width: 100%;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ContactForm h2 {
+    font-size: 20px;
+  }
+
+  .form-row input, .form-row textarea {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
+
+  .ContactSection {
+    padding: 10px;
+  }
+
+  .MapSection iframe {
+    height: 250px;
+  }
+}
+
 
 .get-in-touch-title {
   font-size: 2rem;
@@ -4372,7 +4710,6 @@ select.form-input {
     grid-template-columns: 1fr;
   }
 }
-
 .About .AdoptionPage {
   display: flex;
   justify-content: space-between;
@@ -4402,7 +4739,7 @@ select.form-input {
 .About .title {
   font-size: 40px;
   font-weight: bold;
-  color:rgb(218, 109, 36);
+  color: rgb(218, 109, 36);
   margin-bottom: 30px;
   animation: About-slideDown 4s ease-in-out; /* Slow slide-down for title */
 }
@@ -4420,7 +4757,7 @@ select.form-input {
   gap: 15px;
 }
 
-.About .AdoptButton, 
+.About .AdoptButton,
 .About .DonateButton {
   padding: 10px 20px;
   font-size: 20px;
@@ -4496,5 +4833,101 @@ select.form-input {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .About .AdoptionPage {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .About .AdoptButton,
+  .About .DonateButton {
+    font-size: 18px;
+    padding: 8px 15px;
+  }
+
+  .About .PetImage {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .About .PetImg {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .About .AdoptionContent {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .About .title {
+    font-size: 32px;
+  }
+
+  .About .subtitle {
+    font-size: 24px;
+  }
+
+  .About .description {
+    font-size: 14px;
+  }
+
+  .About .AdoptButton,
+  .About .DonateButton {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  .About .PetImage {
+    width: 100%;
+    text-align: center;
+  }
+
+  .About .PetImg {
+    width: 80%;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .About .AdoptionPage {
+    padding: 15px;
+  }
+
+  .About .AdoptButton,
+  .About .DonateButton {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .About .title {
+    font-size: 28px;
+  }
+
+  .About .subtitle {
+    font-size: 20px;
+  }
+
+  .About .description {
+    font-size: 12px;
+  }
+
+  .About .PetImage {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .About .PetImg {
+    width: 80%;
+    border-radius: 10px;
   }
 }
