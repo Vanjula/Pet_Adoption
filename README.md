@@ -18,7 +18,6 @@
 **Frontend:** React.js / CSS / JavaScript  
 **Backend:** Node.js / Express.js  
 **Database:** MongoDB  
-**Other Tools:** Razorpay (for secure payments), Chart.js or similar (for admin graphs)  
 
 ---
 
@@ -31,4 +30,4 @@ Make sure you have the following installed:
 - Node.js  
 - npm  
 
-> Clone the repo and run `npm install` in both frontend and backend folders to get started!
+Clone the repo and run `npm install` in both frontend and backend folders to get started!
